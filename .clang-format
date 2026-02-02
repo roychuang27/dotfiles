@@ -1,0 +1,17 @@
+Language:        Cpp
+BasedOnStyle:  Google
+# AllowShortFunctionsOnASingleLine: None
+# AllowShortIfStatementsOnASingleLine: false
+# AllowShortLoopsOnASingleLine: false
+# ColumnLimit:    120
+IndentWidth:     8
+TabWidth:        8
+UseTab:          Never
+# IndentCaseLabels: false
+# MaxEmptyLinesToKeep: 1
+# BreakBeforeBraces: Never
+# SpaceBeforeParens: ControlStatements
+# SpaceBeforeAssignmentOperators: true
+# SpaceAfterAssignmentOperators: true
+# SpaceBeforeCpp11BracedList: false
+# ContinuationIndentWidth: 4
