@@ -16,17 +16,10 @@ function yy
 	rm -f -- "$tmp"
 end
 
-function vim
-	nvim $argv
-end
-
-function rm
-	rm -i %argv
-end
-
-function vide
-	neovide --fork $argv
-end
+alias rm='rm -i'
+alias vim='nvim'
+alias neovide='neovide --fork'
+alias vide='neovide'
 
 # opencode
 fish_add_path /home/roychuang/.opencode/bin
