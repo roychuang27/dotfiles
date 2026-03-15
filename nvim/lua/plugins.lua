@@ -5,12 +5,7 @@ return {
     "nvim-tree/nvim-web-devicons",
     "MunifTanjim/nui.nvim",
     "folke/neoconf.nvim",
-    {
-        "folke/snacks.nvim",
-        opts = {
-            input = { enabled = false },
-        },
-    },
+    "folke/snacks.nvim",
     {
         "sainnhe/everforest",
         priority = 1000,
@@ -106,12 +101,15 @@ return {
                 "html",
                 "cssls",
                 "ts_ls",
-                "basedpyright",
-                "quick-lint-js",
-                "ast-grep",
-                "typescript-language-server",
+                -- "basedpyright",
+                "quick_lint_js",
+                "ast_grep",
             }
         },
+        config = function(_, opts)
+            require("mason").setup({})
+            require("mason-lspconfig").setup(opts)
+        end,
         dependencies = {
             { "mason-org/mason.nvim", opts = {} },
             "neovim/nvim-lspconfig",
@@ -200,7 +198,6 @@ return {
             },
             "nvim-telescope/telescope-file-browser.nvim",
             "nvim-telescope/telescope-project.nvim",
-            "nvim-telescope/telescope-ui-select.nvim",
         },
         config = function()
             local builtin = require("telescope.builtin")
@@ -213,7 +210,6 @@ return {
             telescope.load_extension("fzf")
             telescope.load_extension("file_browser")
             telescope.load_extension("project")
-            telescope.load_extension("ui-select")
             vim.keymap.set("n", "<leader>fp", telescope.extensions.project.project)
         end,
     },
@@ -252,7 +248,6 @@ return {
     {
         "rmagatti/goto-preview",
         dependencies = { "rmagatti/logger.nvim", "nvim-telescope/telescope.nvim" },
-        event = "BufEnter",
         config = function()
             require("goto-preview").setup({
                 width = 120,
@@ -266,7 +261,7 @@ return {
                 post_close_hook = nil,
                 references = {
                     provider = "telescope",
-                    telescope = require("telescope.themes").get_dropdown({ hide_preview = false }),
+                    telescope = require("telescope.themes").get_dropdown({ hide_preview = false })
                 },
                 focus_on_open = true,
                 dismiss_on_move = false,
@@ -275,15 +270,17 @@ return {
                 stack_floating_preview_windows = true,
                 same_file_float_preview = true,
                 preview_window_title = { enable = true, position = "left" },
-                zindex = 50,
-                vim_ui_input = false,
+                zindex = 1,
+                vim_ui_input = true,
             })
-            vim.keymap.set("n", "gpd", "<cmd>lua require('goto-preview').goto_preview_definition()<CR>", { noremap = true })
-            vim.keymap.set("n", "gpt", "<cmd>lua require('goto-preview').goto_preview_type_definition()<CR>", { noremap = true })
-            vim.keymap.set("n", "gpi", "<cmd>lua require('goto-preview').goto_preview_implementation()<CR>", { noremap = true })
-            vim.keymap.set("n", "gpD", "<cmd>lua require('goto-preview').goto_preview_declaration()<CR>", { noremap = true })
-            vim.keymap.set("n", "gP", "<cmd>lua require('goto-preview').close_all_win()<CR>", { noremap = true })
-            vim.keymap.set("n", "gpr", "<cmd>lua require('goto-preview').goto_preview_references()<CR>", { noremap = true })
+            local gpv = require("goto-preview")
+            
+            vim.keymap.set("n", "gpd", gpv.goto_preview_definition)
+            vim.keymap.set("n", "gpt", gpv.goto_preview_type_definition)
+            vim.keymap.set("n", "gpi", gpv.goto_preview_implementation)
+            vim.keymap.set("n", "gpD", gpv.goto_preview_declaration)
+            vim.keymap.set("n", "gP", gpv.close_all_win)
+            vim.keymap.set("n", "gpr", gpv.goto_preview_references)
         end,
     },
     {
