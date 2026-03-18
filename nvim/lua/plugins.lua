@@ -32,49 +32,58 @@ return {
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",
         opts = {},
-        dependencies = { "HiPhish/rainbow-delimiters.nvim", },
         config = function()
             if vim.g.vscode then
                 require("ibl").setup({ enabled = false })
                 return
             end
-            local highlight = {
-                "RainbowRed",
-                "RainbowYellow",
-                "RainbowBlue",
-                "RainbowOrange",
-                "RainbowGreen",
-                "RainbowViolet",
-                "RainbowCyan",
-            }
-            local hooks = require "ibl.hooks"
-            hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-                vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
-                vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
-                vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
-                vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
-                vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
-                vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
-                vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
-            end)
-            vim.g.rainbow_delimiters = { highlight = highlight }
-            require("ibl").setup { scope = { highlight = highlight } }
-            hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
-        end
+            require("ibl").setup({
+              enabled = true,
+              debounce = 200, -- optional; how often to refresh (ms)
+              whitespace = {
+                remove_blankline_trail = true,
+              },
+              scope = {
+                enabled = false,
+                show_start = true,
+                show_end = false,
+                show_exact_scope = false,
+                injected_languages = true,
+                include = {
+                  node_type = {
+                    python = {
+                      "if_statement",
+                      "for_statement",
+                      "while_statement",
+                      "function_definition",
+                      "class_definition",
+                      "with_statement",
+                      "try_statement",
+                    },
+                  },
+                },
+              },
+              exclude = {
+                filetypes = {
+                  "help",
+                  "startify",
+                  "dashboard",
+                  "packer",
+                  "neogitstatus",
+                  "NvimTree",
+                  "Trouble",
+                },
+                buftypes = { "terminal", "nofile" },
+              },
+            })
+        end,
+        dependencies = { "TheGLander/indent-rainbowline.nvim" },
     },
     {
         "nvim-tree/nvim-tree.lua",
         config = function()
             vim.g.loaded_netrw = 1
             vim.g.loaded_netrwPlugin = 1
-            -- vim.api.nvim_create_autocmd("BufEnter", {
-            --   nested = true,
-            --   callback = function()
-            --     if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil then
-            --       vim.cmd("quit")
-            --     end
-            --   end
-            -- })   
             require("nvim-tree").setup({
                 sort = {
                     sorter = "case_sensitive",
@@ -135,10 +144,6 @@ return {
                 "ast_grep",
             }
         },
-        config = function(_, opts)
-            require("mason").setup({})
-            require("mason-lspconfig").setup(opts)
-        end,
         dependencies = {
             { "mason-org/mason.nvim", opts = {} },
             "neovim/nvim-lspconfig",
@@ -176,9 +181,6 @@ return {
                 strategy = {
                     [""] = "rainbow-delimiters.strategy.global",
                     vim = "rainbow-delimiters.strategy.local",
-                    python = "rainbow-delimiters.strategy.local",
-                    cpp = "rainbow-delimiters.strategy.local",
-                    jsx = "rainbow-delimiters.strategy.local",
                 },
                 query = {
                     [""] = "rainbow-delimiters",
