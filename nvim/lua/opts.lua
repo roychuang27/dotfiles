@@ -9,6 +9,7 @@ if vim.g.neovide then
     vim.g.neovide_cursor_animate_in_insert_mode = false
     vim.g.neovide_cursor_animate_command_line = false
     vim.g.neovide_scroll_animation_far_lines = 0
+    vim.g.neovide_progress_bar_enabled = false   
 end
 
 vim.g.mapleader = "\\"
@@ -17,14 +18,12 @@ vim.g.maplocalleader = "\\"
 vim.opt.number = true
 vim.opt.relativenumber = false
 vim.opt.wrap = false
+vim.opt.cursorline = true
 
 vim.opt.tabstop = 8
 vim.opt.shiftwidth = 8
 vim.opt.expandtab = true
 vim.opt.softtabstop = 8
-
-vim.g.airline_powerline_fonts = 0
-vim.g.webdevicons_enable_nerdtree = 1
 
 vim.opt.list = true
 vim.opt.listchars = {
@@ -44,3 +43,5 @@ vim.diagnostic.config({
 
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
+
+vim.g.airline_powerline_fonts = 1

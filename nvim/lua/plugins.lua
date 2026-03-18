@@ -32,20 +32,49 @@ return {
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",
         opts = {},
+        dependencies = { "HiPhish/rainbow-delimiters.nvim", },
+        config = function()
+            if vim.g.vscode then
+                require("ibl").setup({ enabled = false })
+                return
+            end
+            local highlight = {
+                "RainbowRed",
+                "RainbowYellow",
+                "RainbowBlue",
+                "RainbowOrange",
+                "RainbowGreen",
+                "RainbowViolet",
+                "RainbowCyan",
+            }
+            local hooks = require "ibl.hooks"
+            hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+                vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#E06C75" })
+                vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#E5C07B" })
+                vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#61AFEF" })
+                vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#D19A66" })
+                vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#98C379" })
+                vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#C678DD" })
+                vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#56B6C2" })
+            end)
+            vim.g.rainbow_delimiters = { highlight = highlight }
+            require("ibl").setup { scope = { highlight = highlight } }
+            hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
+        end
     },
     {
         "nvim-tree/nvim-tree.lua",
         config = function()
             vim.g.loaded_netrw = 1
             vim.g.loaded_netrwPlugin = 1
-            vim.api.nvim_create_autocmd("BufEnter", {
-              nested = true,
-              callback = function()
-                if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil then
-                  vim.cmd("quit")
-                end
-              end
-            })   
+            -- vim.api.nvim_create_autocmd("BufEnter", {
+            --   nested = true,
+            --   callback = function()
+            --     if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil then
+            --       vim.cmd("quit")
+            --     end
+            --   end
+            -- })   
             require("nvim-tree").setup({
                 sort = {
                     sorter = "case_sensitive",
@@ -122,6 +151,7 @@ return {
             require("nvim-treesitter.install").install({
                 "python",
                 "c",
+                "cpp",
                 "javascript",
                 "typescript",
                 "tsx",
@@ -131,7 +161,7 @@ return {
                 "lua",
             })
             vim.api.nvim_create_autocmd("FileType", {
-                pattern = { "python", "c", "javascript", "javascriptreact", "typescript", "typescriptreact", "html", "css", "json", "lua" },
+                pattern = { "python", "c", "cpp", "javascript", "javascriptreact", "typescript", "typescriptreact", "html", "css", "json", "lua" },
                 callback = function()
                     vim.treesitter.start()
                 end,
@@ -140,11 +170,15 @@ return {
     },
     {
         "HiPhish/rainbow-delimiters.nvim",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
         config = function()
             vim.g.rainbow_delimiters = {
                 strategy = {
                     [""] = "rainbow-delimiters.strategy.global",
                     vim = "rainbow-delimiters.strategy.local",
+                    python = "rainbow-delimiters.strategy.local",
+                    cpp = "rainbow-delimiters.strategy.local",
+                    jsx = "rainbow-delimiters.strategy.local",
                 },
                 query = {
                     [""] = "rainbow-delimiters",
@@ -271,10 +305,9 @@ return {
                 same_file_float_preview = true,
                 preview_window_title = { enable = true, position = "left" },
                 zindex = 1,
-                vim_ui_input = true,
+                vim_ui_input = false,
             })
             local gpv = require("goto-preview")
-            
             vim.keymap.set("n", "gpd", gpv.goto_preview_definition)
             vim.keymap.set("n", "gpt", gpv.goto_preview_type_definition)
             vim.keymap.set("n", "gpi", gpv.goto_preview_implementation)
@@ -369,23 +402,4 @@ return {
             })
         end,
     },
-    -- {
-    --     "neovim/nvim-lspconfig",
-    --     config = function()
-    --         vim.lsp.config("*", {})
-    --         vim.lsp.enable({
-    --             "pyright",
-    --             "eslint",
-    --             "clangd",
-    --             "lua_ls",
-    --             "html",
-    --             "cssls",
-    --             "ts_ls",
-    --             "basedpyright",
-    --             "quick-lint-js",
-    --             "ast-grep",
-    --             "typescript-language-server",
-    --         })
-    --     end,
-    -- },
 }
