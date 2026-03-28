@@ -45,3 +45,7 @@ vim.opt.termguicolors = true
 vim.opt.background = "dark"
 
 vim.g.airline_powerline_fonts = 1
+
+vim.o.foldmethod = 'expr'
+vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.o.foldenable = true
