@@ -4,30 +4,9 @@ snippet cp
         #include <iostream>
         #include <utility>
         #include <vector>
-        #define test(...) \
-            do { \
-                cerr << "Line(" << __LINE__ << ") [" #__VA_ARGS__ "] =>"; \
-                ([](auto&&... args) { \
-                    ((cerr << ' ' << args), ...); \
-                }(__VA_ARGS__)); \
-                cerr << '\n'; \
-            } while(0)
-        #define testv(x) \
-            do { \
-                cerr << "Line(" << __LINE__ << ") " #x " => ["; \
-                bool _first = true; \
-                for (auto& _e : (x)) { \
-                    if (!_first) cerr << ", "; \
-                    cerr << _e; \
-                    _first = false; \
-                } \
-                cerr << "]\n"; \
-            } while(0)
-        #define printv(x)                          \
-        {                                          \
-                for (auto i : x) cout << i << ' '; \
-                cout << endl;                      \
-        }
+        #define test(...) do { cerr << "Line(" << __LINE__ << ") [" #__VA_ARGS__ "] =>"; ([](auto&&... args){ ((cerr << ' ' << args), ...); }(__VA_ARGS__)); cerr << endl; } while(0)
+        #define testv(x) do { cerr << "Line(" << __LINE__ << ") " #x " => ["; int _i=0; for (auto& _e : (x)) cerr << (_i++ ? ", " : "") << _e; cerr << "]" << endl; } while(0)
+        #define printv(x) { for (auto i : (x)) cout << i << ' '; cout << endl; }
         #define SQ(x) ((x) * (x))
         #define SZ(x) ((int)x.size())
         #define eb emplace_back
@@ -48,7 +27,6 @@ snippet cp
                 solution();
                 return 0;
         }
-
 snippet lazyseg
         template <class S,
                   S (*op)(S, S),
