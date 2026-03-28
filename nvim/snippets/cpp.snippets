@@ -1,26 +1,284 @@
 snippet cp
-	#include <iostream>
-	#define test(x) cerr << "Line(" << __LINE__ << ") " #x << ' ' << x << endl
-	#define printv(x)                          \
-	{                                          \
-	        for (auto i : x) cout << i << ' '; \
-	        cout << endl;                      \
-	}
-	#define SQ(x) ((x) * (x))
-	#define SZ(x) ((int)x.size())
-	#define eb emplace_back
-	#define ALL(x) x.begin(), x.end()
-	#define rALL(x) x.begin(), x.end()
-	
-	using namespace std;
-	using lli = long long int;
-	
-	void solution() {
-	        ${1:}
-	}
-	
-	int main() {
-	        cin.tie(nullptr)->sync_with_stdio(false);
-	        solution();
-	        return 0;
-	}
+        #include <functional>
+        #include <iostream>
+        #include <utility>
+        #include <vector>
+        #define test(x) cerr << "Line(" << __LINE__ << ") " #x << ' ' << x << endl
+        #define printv(x)                          \
+        {                                          \
+                for (auto i : x) cout << i << ' '; \
+                cout << endl;                      \
+        }
+        #define SQ(x) ((x) * (x))
+        #define SZ(x) ((int)x.size())
+        #define eb emplace_back
+        #define ALL(x) begin(x), end(x)
+        #define rALL(x) rbegin(x), rend(x)
+        #define fst first
+        #define sec second
+        
+        using namespace std;
+        using lli = long long int;
+        
+        void solution() {
+                ${1:}
+        }
+        
+        int main() {
+                cin.tie(nullptr)->sync_with_stdio(false);
+                solution();
+                return 0;
+        }
+
+snippet lazyseg
+        template <class S,
+                  S (*op)(S, S),
+                  S (*e)(),
+                  class F,
+                  S (*mapping)(F, S),
+                  F (*composition)(F, F),
+                  F (*id)()>
+        struct lazy_segtree {
+                int n, size, log;
+                std::vector<S> d;
+                std::vector<F> lz;
+        
+                lazy_segtree(int _n = 0) : n(_n) {
+                        size = 1, log = 0;
+                        while (size < n) size <<= 1, log++;
+                        d.assign(2 * size, e());
+                        lz.assign(size, id());
+                }
+        
+                lazy_segtree(const std::vector<S>& v) : lazy_segtree((int)v.size()) {
+                        for (int i = 0; i < n; i++) d[size + i] = v[i];
+                        for (int i = size - 1; i; i--)
+                                d[i] = op(d[i<<1], d[i<<1|1]);
+                }
+        
+                void apply_node(int k, F f) {
+                        d[k] = mapping(f, d[k]);
+                        if (k < size) lz[k] = composition(f, lz[k]);
+                }
+        
+                void push(int k) {
+                        apply_node(k<<1, lz[k]);
+                        apply_node(k<<1|1, lz[k]);
+                        lz[k] = id();
+                }
+        
+                void set(int p, S x) {
+                        p += size;
+                        for (int i = log; i; i--) push(p >> i);
+                        d[p] = x;
+                        for (p >>= 1; p; p >>= 1)
+                                d[p] = op(d[p<<1], d[p<<1|1]);
+                }
+        
+                S get(int p) {
+                        p += size;
+                        for (int i = log; i; i--) push(p >> i);
+                        return d[p];
+                }
+        
+                // [l, r)
+                S prod(int l, int r) {
+                        if (l == r) return e();
+                        l += size; r += size;
+                        for (int i = log; i; i--) {
+                                if ((l >> i) << i != l) push(l >> i);
+                                if ((r >> i) << i != r) push((r - 1) >> i);
+                        }
+                        S L = e(), R = e();
+                        for (; l < r; l >>= 1, r >>= 1) {
+                                if (l & 1) L = op(L, d[l++]);
+                                if (r & 1) R = op(d[--r], R);
+                        }
+                        return op(L, R);
+                }
+        
+                S all_prod() { return d[1]; }
+        
+                void apply(int p, F f) {
+                        p += size;
+                        for (int i = log; i; i--) push(p >> i);
+                        d[p] = mapping(f, d[p]);
+                        for (p >>= 1; p; p >>= 1)
+                                d[p] = op(d[p<<1], d[p<<1|1]);
+                }
+        
+                void apply(int l, int r, F f) {
+                        if (l == r) return;
+                        l += size; r += size;
+                        for (int i = log; i; i--) {
+                                if ((l >> i) << i != l) push(l >> i);
+                                if ((r >> i) << i != r) push((r - 1) >> i);
+                        }
+                        int l0 = l, r0 = r;
+                        for (; l < r; l >>= 1, r >>= 1) {
+                                if (l & 1) apply_node(l++, f);
+                                if (r & 1) apply_node(--r, f);
+                        }
+                        l = l0; r = r0;
+                        for (int i = 1; i <= log; i++) {
+                                if ((l >> i) << i != l) d[l>>i] = op(d[(l>>i)<<1], d[(l>>i)<<1|1]);
+                                if ((r >> i) << i != r) d[(r-1)>>i] = op(d[((r-1)>>i)<<1], d[((r-1)>>i)<<1|1]);
+                        }
+                }
+        
+                template <class G>
+                int max_right(int l, G g) {
+                        if (l == n) return n;
+                        l += size;
+                        for (int i = log; i; i--) push(l >> i);
+                        S sm = e();
+                        do {
+                                while (!(l & 1)) l >>= 1;
+                                if (!g(op(sm, d[l]))) {
+                                        while (l < size) {
+                                                push(l);
+                                                l <<= 1;
+                                                if (g(op(sm, d[l])))
+                                                        sm = op(sm, d[l++]);
+                                        }
+                                        return l - size;
+                                }
+                                sm = op(sm, d[l++]);
+                        } while ((l & -l) != l);
+                        return n;
+                }
+        
+                template <class G>
+                int min_left(int r, G g) {
+                        if (!r) return 0;
+                        r += size;
+                        for (int i = log; i; i--) push((r - 1) >> i);
+                        S sm = e();
+                        do {
+                                --r;
+                                while (r > 1 && (r & 1)) r >>= 1;
+                                if (!g(op(d[r], sm))) {
+                                        while (r < size) {
+                                                push(r);
+                                                r = r<<1 | 1;
+                                                if (g(op(d[r], sm)))
+                                                        sm = op(d[r--], sm);
+                                        }
+                                        return r + 1 - size;
+                                }
+                                sm = op(d[r], sm);
+                        } while ((r & -r) != r);
+                        return 0;
+                }
+        };
+snippet zkw
+        template <class S, S (*op)(S, S), S (*e)()>
+        struct segtree {
+                int n, size, log;
+                std::vector<S> d;
+        
+                segtree(int _n = 0) : n(_n) {
+                        size = 1, log = 0;
+                        while (size < n) size <<= 1, log++;
+                        d.assign(2 * size, e());
+                }
+        
+                segtree(const std::vector<S>& v) : segtree((int)v.size()) {
+                        for (int i = 0; i < n; i++) d[size + i] = v[i];
+                        for (int i = size - 1; i; i--)
+                                d[i] = op(d[i<<1], d[i<<1|1]);
+                }
+        
+                void set(int p, S x) {
+                        p += size;
+                        d[p] = x;
+                        for (p >>= 1; p; p >>= 1)
+                                d[p] = op(d[p<<1], d[p<<1|1]);
+                }
+        
+                S get(int p) const {
+                        return d[p + size];
+                }
+        
+                // [l, r)
+                S prod(int l, int r) const {
+                        S L = e(), R = e();
+                        for (l += size, r += size; l < r; l >>= 1, r >>= 1) {
+                                if (l & 1) L = op(L, d[l++]);
+                                if (r & 1) R = op(d[--r], R);
+                        }
+                        return op(L, R);
+                }
+        
+                S all_prod() const {
+                        return d[1];
+                }
+        
+                template <class F>
+                int max_right(int l, F f) const {
+                        if (l == n) return n;
+                        S sm = e();
+                        for (l += size;; l >>= 1) {
+                                while (!(l & 1)) l >>= 1;
+                                if (!f(op(sm, d[l]))) {
+                                        while (l < size) {
+                                                l <<= 1;
+                                                if (f(op(sm, d[l])))
+                                                        sm = op(sm, d[l++]);
+                                        }
+                                        return l - size;
+                                }
+                                sm = op(sm, d[l++]);
+                                if ((l & -l) == l) break;
+                        }
+                        return n;
+                }
+        
+                template <class F>
+                int min_left(int r, F f) const {
+                        if (!r) return 0;
+                        S sm = e();
+                        for (r += size;; r >>= 1) {
+                                --r;
+                                while (r > 1 && (r & 1)) r >>= 1;
+                                if (!f(op(d[r], sm))) {
+                                        while (r < size) {
+                                                r = r<<1 | 1;
+                                                if (f(op(d[r], sm)))
+                                                        sm = op(d[r--], sm);
+                                        }
+                                        return r + 1 - size;
+                                }
+                                sm = op(d[r], sm);
+                                if ((r & -r) == r) break;
+                        }
+                        return 0;
+                }
+        };
+snippet fenwick
+        template <class T>
+        struct fenwick {
+                int n;
+                std::vector<T> t;
+        
+                fenwick(int _n = 0) : n(_n), t(n + 1, T()) {}
+        
+                // add x at index p (0-based)
+                void add(int p, T x) {
+                        for (++p; p <= n; p += p & -p)
+                                t[p] += x;
+                }
+        
+                // sum of [0, r)
+                T sum(int r) const {
+                        T s = T();
+                        for (; r > 0; r -= r & -r)
+                                s += t[r];
+                        return s;
+                }
+        
+                // sum of [l, r)
+                T sum(int l, int r) const {
+                        return sum(r) - sum(l);
+                }
+        };
