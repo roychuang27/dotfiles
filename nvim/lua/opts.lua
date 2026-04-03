@@ -43,6 +43,7 @@ vim.diagnostic.config({
 
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
+vim.opt.ambiwidth = 'single'
 
 vim.g.airline_powerline_fonts = 1
 

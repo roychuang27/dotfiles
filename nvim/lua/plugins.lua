@@ -264,7 +264,42 @@ return {
         keys = {
             { "<leader>a", "<cmd>Assistant<cr>", desc = "Assistant.nvim" },
         },
-        opts = {},
+        opts = {
+            mappings = {},
+            commands = {
+                cpp = {
+                    extension = 'cpp',
+                    template = nil,
+                    compile = {
+                        main = 'g++',
+                        args = { '$FILENAME_WITH_EXTENSION', '-DLOCAL', '-o', '/home/roychuang/tmp/$FILENAME_WITHOUT_EXTENSION.out' },
+                    },
+                    execute = {
+                        main = '/home/roychuang/tmp/$FILENAME_WITHOUT_EXTENSION.out',
+                        args = nil,
+                    },
+                },
+                python = {
+                    extension = 'py',
+                    template = nil,
+                    compile = nil,
+                    execute = {
+                        main = 'python3',
+                        args = { '$FILENAME_WITH_EXTENSION' },
+                    },
+                },
+            },
+            ui = {
+                border = 'single',
+                diff_mode = true,
+                title_components_separator = '',
+            },
+            core = {
+                process_budget = 5000,
+                port = 10043,
+                filename_generator = nil
+            },
+        },
     },
     "terrortylor/nvim-comment",
     "nvim-telescope/telescope-ui-select.nvim",
