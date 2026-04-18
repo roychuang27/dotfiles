@@ -298,7 +298,7 @@ return {
                     template = nil,
                     compile = {
                         main = 'g++',
-                        args = { '$FILENAME_WITH_EXTENSION', '-DLOCAL', '-o', '/home/roychuang/tmp/$FILENAME_WITHOUT_EXTENSION.out' },
+                        args = { '$FILENAME_WITH_EXTENSION', '-DLOCAL', '-std=c++23', '-o', '/home/roychuang/tmp/$FILENAME_WITHOUT_EXTENSION.out' },
                     },
                     execute = {
                         main = '/home/roychuang/tmp/$FILENAME_WITHOUT_EXTENSION.out',
