@@ -57,10 +57,10 @@ set ignorecase
 set magic "extended regexes
 
 set expandtab
-set shiftwidth=4
-set tabstop=4
-set softtabstop=4
-set ts=4
+set shiftwidth=8
+set tabstop=8
+set softtabstop=8
+set ts=8
 
 set autoindent
 set smartindent
@@ -103,8 +103,9 @@ let python_highlight_all = 1
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 set list
-" set listchars=tab:>-,trail:~,extends:>,precedes:<,space:·
-set listchars=tab:>-,trail:~,extends:>,precedes:<
-set mouse=a
+set listchars=tab:>-,trail:~,extends:>,precedes:<,space:·
+set nolist
+set mouse=
 set guioptions=
 set nowrap
+nnoremap <Leader>b :buffers<CR>:buffer<Space>

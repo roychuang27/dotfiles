@@ -9,3 +9,5 @@
 [ -f /home/roychuang/.dart-cli-completion/bash-config.bash ] && . /home/roychuang/.dart-cli-completion/bash-config.bash || true
 ## [/Completion]
 
+
+. "$HOME/.local/bin/env"
