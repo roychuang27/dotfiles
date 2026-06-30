@@ -298,7 +298,7 @@ return {
                     template = nil,
                     compile = {
                         main = 'g++',
-                        args = { '$FILENAME_WITH_EXTENSION', '-DLOCAL', '-std=c++23', '-o', '/home/roychuang/tmp/$FILENAME_WITHOUT_EXTENSION.out' },
+                        args = { '$FILENAME_WITH_EXTENSION', '-DLOCAL', '-std=c++23', '-o', '/home/roychuang/tmp/$FILENAME_WITHOUT_EXTENSION.out', '-Ibits/stdc++.h' },
                     },
                     execute = {
                         main = '/home/roychuang/tmp/$FILENAME_WITHOUT_EXTENSION.out',
@@ -463,6 +463,18 @@ return {
                     { name = "buffer" },
                 }),
             })
+            function leave_snippet()
+                if
+                    ((vim.v.event.old_mode == 's' and vim.v.event.new_mode == 'n') or vim.v.event.old_mode == 'i')
+                    and require('luasnip').session.current_nodes[vim.api.nvim_get_current_buf()]
+                    and not require('luasnip').session.jump_active
+                then
+                    require('luasnip').unlink_current()
+                end
+            end
+            vim.api.nvim_command([[
+                autocmd ModeChanged * lua leave_snippet()
+            ]])
         end,
     },
 }
