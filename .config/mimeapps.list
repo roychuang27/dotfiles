@@ -1,0 +1,17 @@
+[Added Associations]
+image/jpeg=org.kde.gwenview.desktop;brave-browser.desktop;
+image/png=/home/roychuang/.local/share/applications/gwenview.desktop;org.kde.gwenview.desktop;
+text/html=neovide.desktop;brave-browser.desktop;librewolf.desktop;vim.desktop;codium.desktop;nvim.desktop;
+image/x-xcursor=org.kde.ark.desktop;org.kde.gwenview.desktop;
+application/x-shellscript=neovide.desktop;
+application/x-powershell=neovide.desktop;
+
+[Default Applications]
+image/jpeg=org.kde.gwenview.desktop;
+image/png=org.kde.gwenview.desktop
+text/html=neovide.desktop;
+x-scheme-handler/about=brave-browser.desktop
+x-scheme-handler/http=brave-browser.desktop
+x-scheme-handler/https=brave-browser.desktop
+x-scheme-handler/unknown=brave-browser.desktop
+application/x-powershell=neovide.desktop
