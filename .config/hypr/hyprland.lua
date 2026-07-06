@@ -39,15 +39,12 @@ hl.env("XDG_CONFIG_HOME", XDG_CONFIG_HOME)
 hl.env("XDG_DATA_HOME",   XDG_DATA_HOME)
 hl.env("XDG_CACHE_HOME",  XDG_CACHE_HOME)
 
-
--- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Permissions/
--- Please note permission changes here require a Hyprland restart and are not applied on-the-fly
--- for security reasons
+-- https://wiki.hypr.land/Configuring/Advanced-and-Cool/Permissions/
 
 hl.config({
-  ecosystem = {
-    enforce_permissions = true,
-  },
+    ecosystem = {
+        enforce_permissions = true,
+    },
 })
 
 hl.permission("/usr/(bin|local/bin)/grim", "screencopy", "allow")
@@ -55,11 +52,6 @@ hl.permission("/usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland", "screencop
 hl.permission("/usr/(bin|local/bin)/hyprpm", "plugin", "allow")
 
 
------------------------
----- LOOK AND FEEL ----
------------------------
-
--- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
 hl.config({
     general = {
         gaps_in  = 2,
@@ -99,29 +91,27 @@ hl.config({
     animations = {
         enabled = false,
     },
-})
 
-hl.config({
     dwindle = {
         preserve_split = true, -- You probably want this
     },
+
     master = {
         new_status = "master",
     },
-})
 
--- See https://wiki.hypr.land/Configuring/Layouts/Scrolling-Layout/ for more
-hl.config({
     scrolling = {
         fullscreen_on_one_column = true,
     },
-})
 
-hl.config({
     misc = {
         force_default_wallpaper = -1,    -- Set to 0 or 1 to disable the anime mascot wallpapers
         disable_hyprland_logo   = false, -- If true disables the random hyprland logo / anime girl background. :(
     },
+
+    xwayland = {
+        force_zero_scaling = true
+    }
 })
 
 hl.config({
@@ -156,14 +146,24 @@ hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
--- hl.bind(mainMod .. " + D", hl.dsp.layout("togglesplit"))    -- dwindle only
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("noctalia msg bar-toggle"))
 
 hl.bind(mainMod .. " + Space", hl.dsp.layout("swapwithmaster master"))
-hl.bind("ALT + Tab", hl.dsp.layout("cyclenext"))
+hl.bind(mainMod .. " + Tab", hl.dsp.layout("cyclenext"))
+hl.bind(mainMod .. " + SHIFT + Tab", hl.dsp.layout("cycleprev"))
 
-hl.bind("Print", hl.dsp.exec_cmd(("grim ~/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png")))
+hl.bind("PRINT",
+    hl.dsp.exec_cmd([[
+        sh -c '
+        dir="$HOME/Pictures/Screenshots"
+        file="$dir/$(date +%F-%H-%M-%S).png"
+        mkdir -p "$dir"
+        region=$(slurp) || exit 1
+        [ -n "$region" ] && grim -g "$region" "$file" && wl-copy < "$file"
+        '
+    ]])
+)
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
@@ -198,13 +198,13 @@ hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("noctalia msg media toggle"), { locked
 hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("noctalia msg media previous"), { locked = true })
 
 
-hl.window_rule({
+local suppress_maximize_events = hl.window_rule({
     name  = "suppress-maximize-events",
     match = { class = ".*" },
     suppress_event = "maximize",
 })
 
-hl.window_rule({
+local fix_xwayland_drags = hl.window_rule({
     name  = "fix-xwayland-drags",
     match = {
         class      = "^$",
@@ -218,7 +218,7 @@ hl.window_rule({
     no_focus = true,
 })
 
-hl.window_rule({
+local move_hyprland_run = hl.window_rule({
     name  = "move-hyprland-run",
     match = { class = "hyprland-run" },
 
@@ -227,9 +227,3 @@ hl.window_rule({
 })
 
 require("noctalia").apply_theme()
-
-hl.config({
-  xwayland = {
-    force_zero_scaling = true
-  }
-})

@@ -33,8 +33,10 @@ def neovide [] {
     ^neovide --fork
 }
 
+alias cfnu = config nu
 alias cfhl = nvim ~/.config/hypr/hyprland.lua
-alias cffh = nvim ~/.config/fish/config.fish
+alias cfbu = nvim ~/dotfiles/pull_from_home.py
+alias rubu = python ~/dotfiles/pull_from_home.py
 
 def ytmdl [...args] {
     let opts = [
