@@ -23,19 +23,14 @@ PATHS = [
     ".vimrc",
     ".tmux.conf",
     ".config/mimeapps.list",
-    ".config/autostart/",
     ".config/fish/config.fish",
     ".config/fontconfig/fonts.conf",
-    ".config/gtk-2.0/settings.ini",
-    ".config/gtk-3.0/settings.ini",
-    ".config/gtk-4.0/settings.ini",
     ".config/hypr/hyprland.lua",
     ".config/kitty/kitty.conf",
-    ".config/noctalia",
     ".config/nushell/config.nu",
     ".config/nvim/init.lua",
-    ".config/nvim/lua",
-    ".config/nvim/snippets",
+    ".config/nvim/lua/",
+    ".config/nvim/snippets/",
     ".config/qt6ct/qt6ct.conf",
     ".local/state/noctalia/settings.toml",
 ]
@@ -81,20 +76,7 @@ def sync_dir(src: Path, dst: Path, dry_run: bool) -> bool:
 
 def sync(src: Path, dst: Path, dry_run: bool) -> bool:
     if not src.exists():
-        if dst.exists():
-            print(f"  STALE  {dst}  (source removed)")
-            answer = input("    [r]emove from repo, [k]eep? ").strip().lower()
-            if answer != "r":
-                print(f"    Kept.")
-                return False
-            if dry_run:
-                print(f"    WOULD REMOVE {dst}")
-            elif dst.is_dir():
-                shutil.rmtree(dst)
-                print(f"    REMOVED {dst}/")
-            else:
-                dst.unlink()
-                print(f"    REMOVED {dst}")
+        print(f"  SKIP   {src}  (not found)")
         return False
 
     if src.is_dir():

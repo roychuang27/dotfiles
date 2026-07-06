@@ -19,6 +19,7 @@ HOME = Path.home()
 
 EXCLUDE = {
     ".git",
+    ".gitignore",
     "sync.py",
     "backup.py",
     ".clangd",
