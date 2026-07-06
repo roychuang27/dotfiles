@@ -1,17 +1,21 @@
 [Added Associations]
+application/x-powershell=neovide.desktop;
+application/x-shellscript=neovide.desktop;
+application/x-zerosize=mpv.desktop;
 image/jpeg=org.kde.gwenview.desktop;brave-browser.desktop;
 image/png=/home/roychuang/.local/share/applications/gwenview.desktop;org.kde.gwenview.desktop;
-text/html=neovide.desktop;brave-browser.desktop;librewolf.desktop;vim.desktop;codium.desktop;nvim.desktop;
 image/x-xcursor=org.kde.ark.desktop;org.kde.gwenview.desktop;
-application/x-shellscript=neovide.desktop;
-application/x-powershell=neovide.desktop;
+text/html=neovide.desktop;brave-browser.desktop;librewolf.desktop;vim.desktop;codium.desktop;nvim.desktop;
+text/x-python=neovide.desktop;org.kde.kwrite.desktop;vim.desktop;org.kde.kate.desktop;okularApplication_txt.desktop;nvim.desktop;codium.desktop;
 
 [Default Applications]
+application/x-powershell=neovide.desktop
+application/x-zerosize=mpv.desktop
 image/jpeg=org.kde.gwenview.desktop;
 image/png=org.kde.gwenview.desktop
 text/html=neovide.desktop;
+text/x-python=neovide.desktop;
 x-scheme-handler/about=brave-browser.desktop
 x-scheme-handler/http=brave-browser.desktop
 x-scheme-handler/https=brave-browser.desktop
 x-scheme-handler/unknown=brave-browser.desktop
-application/x-powershell=neovide.desktop

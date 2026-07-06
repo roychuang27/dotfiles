@@ -1,0 +1,139 @@
+[bar.default]
+background_opacity = 0.4999999888241291
+margin_edge = 0
+margin_ends = 0
+padding = 20
+radius = 0
+shadow = false
+start = [ "launcher", "wallpaper", "workspaces", "active_window" ]
+thickness = 30
+
+[desktop_widgets]
+enabled = false
+schema_version = 2
+widget_order = []
+
+    [desktop_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [desktop_widgets.widget]
+
+[dock]
+auto_hide = true
+reserve_space = false
+
+[idle]
+behavior_order = [ "lock", "screen-off", "lock-and-suspend" ]
+
+    [idle.behavior.lock]
+    action = "lock"
+    enabled = true
+    timeout = 300.0
+
+    [idle.behavior.lock-and-suspend]
+    action = "lock_and_suspend"
+    enabled = false
+    timeout = 900.0
+
+    [idle.behavior.screen-off]
+    action = "screen_off"
+    enabled = true
+    timeout = 300.0
+
+[location]
+address = "Taipei, Taiwan"
+
+[lockscreen_widgets]
+enabled = false
+schema_version = 2
+widget_order = [ "lockscreen-login-box@eDP-1" ]
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
+    box_height = 70.0
+    box_width = 400.0
+    cx = 640.0
+    cy = 601.0
+    output = "eDP-1"
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        input_opacity = 1.0
+        input_radius = 6.0
+        show_login_button = true
+
+[shell]
+avatar_path = "/home/roychuang/Pictures/うれしい～_129479431.jpg"
+settings_show_advanced = true
+
+    [shell.panel]
+    shadow = false
+    transparency_mode = "soft"
+
+    [[shell.session.actions]]
+    action = "lock"
+    countdown_seconds = 0.0
+    enabled = true
+    shortcut = "1"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "logout"
+    command = "command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"
+    countdown_seconds = 0.0
+    enabled = true
+    shortcut = "2"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "reboot"
+    countdown_seconds = 0.0
+    enabled = true
+    shortcut = "3"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "shutdown"
+    countdown_seconds = 0.0
+    enabled = true
+    shortcut = "4"
+    variant = "destructive"
+
+[theme]
+community_palette = "Oxocarbon"
+mode = "dark"
+source = "wallpaper"
+wallpaper_scheme = "m3-rainbow"
+
+    [theme.templates]
+    builtin_ids = [ "btop", "hyprland", "kcolorscheme", "qt", "starship" ]
+    community_ids = [ "zed", "yazi", "hyprtoolkit" ]
+
+[wallpaper.default]
+path = "/home/roychuang/Pictures/Wallpapers/pikasonic_fa_wall_paper.png"
+
+[wallpaper.last]
+path = "/home/roychuang/Pictures/Wallpapers/pikasonic_fa_wall_paper.png"
+
+[wallpaper.monitors.eDP-1]
+path = "/home/roychuang/Pictures/Wallpapers/pikasonic_fa_wall_paper.png"
+
+[widget.brightness]
+show_label = false
+
+[widget.media]
+album_art_only = true
+hide_when_no_media = true
+
+[widget.network]
+show_label = false
