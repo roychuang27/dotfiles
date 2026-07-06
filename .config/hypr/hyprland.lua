@@ -17,6 +17,7 @@ hl.on("hyprland.start", function ()
   hl.exec_cmd("solaar -w hide")
   hl.exec_cmd("noctalia")
   hl.exec_cmd("noctalia msg bluetooth-disable")
+  hl.exec_cmd("noctalia msg bar-hide")
 end)
 
 local HOME = os.getenv("HOME")
@@ -39,21 +40,17 @@ hl.env("XDG_DATA_HOME",   XDG_DATA_HOME)
 hl.env("XDG_CACHE_HOME",  XDG_CACHE_HOME)
 
 
------------------------
------ PERMISSIONS -----
------------------------
-
 -- See https://wiki.hypr.land/Configuring/Advanced-and-Cool/Permissions/
 -- Please note permission changes here require a Hyprland restart and are not applied on-the-fly
 -- for security reasons
 
--- hl.config({
---   ecosystem = {
---     enforce_permissions = true,
---   },
--- })
+hl.config({
+  ecosystem = {
+    enforce_permissions = true,
+  },
+})
 
--- hl.permission("/usr/(bin|local/bin)/grim", "screencopy", "allow")
+hl.permission("/usr/(bin|local/bin)/grim", "screencopy", "allow")
 hl.permission("/usr/(lib|libexec|lib64)/xdg-desktop-portal-hyprland", "screencopy", "allow")
 hl.permission("/usr/(bin|local/bin)/hyprpm", "plugin", "allow")
 
@@ -161,9 +158,12 @@ hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 -- hl.bind(mainMod .. " + D", hl.dsp.layout("togglesplit"))    -- dwindle only
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(browser))
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("noctalia msg bar-toggle"))
 
 hl.bind(mainMod .. " + Space", hl.dsp.layout("swapwithmaster master"))
 hl.bind("ALT + Tab", hl.dsp.layout("cyclenext"))
+
+hl.bind("Print", hl.dsp.exec_cmd(("grim ~/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png")))
 
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. " + left",  hl.dsp.focus({ direction = "left" }))
@@ -218,14 +218,6 @@ hl.window_rule({
     no_focus = true,
 })
 
--- Layer rules also return a handle.
--- local overlayLayerRule = hl.layer_rule({
---     name  = "no-anim-overlay",
---     match = { namespace = "^my-overlay$" },
---     no_anim = true,
--- })
--- overlayLayerRule:set_enabled(false)
-
 hl.window_rule({
     name  = "move-hyprland-run",
     match = { class = "hyprland-run" },
@@ -240,28 +232,4 @@ hl.config({
   xwayland = {
     force_zero_scaling = true
   }
-})
-
-hl.bind("Print", function()
-    local mon = hl.get_active_monitor()
-    local n = mon and mon.id or 0
-    hl.exec_cmd("flameshot screen --number " .. n .. " --edit")
-end)
-
-hl.window_rule({
-    match       = { class = "flameshot" },
-    no_anim     = true,
-    pin         = true,
-    float       = true,
-    decorate    = false,
-    no_blur     = true,
-    no_shadow   = true,
-})
-hl.window_rule({
-    match   = { class = "flameshot", title = "flameshot" },
-    move    = { 0, 0 },
-})
-hl.window_rule({
-    match = { class = "flameshot", title = "flameshot-pin" },
-    move  = { "cursor_x-(window_w*0.5)", "cursor_y-(window_h*0.5)" },
 })

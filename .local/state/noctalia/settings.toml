@@ -1,5 +1,5 @@
 [bar.default]
-background_opacity = 0.4999999888241291
+background_opacity = 0.59999998658895493
 margin_edge = 0
 margin_ends = 0
 padding = 20
@@ -78,7 +78,6 @@ settings_show_advanced = true
 
     [shell.panel]
     shadow = false
-    transparency_mode = "soft"
 
     [[shell.session.actions]]
     action = "lock"
