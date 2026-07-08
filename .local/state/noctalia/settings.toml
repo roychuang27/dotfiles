@@ -1,3 +1,7 @@
+[audio]
+enable_overdrive = true
+enable_sounds = true
+
 [bar.default]
 background_opacity = 0.59999998658895493
 margin_edge = 0
@@ -7,6 +11,10 @@ radius = 0
 shadow = false
 start = [ "launcher", "wallpaper", "workspaces", "active_window" ]
 thickness = 30
+
+[brightness]
+enable_ddcutil = true
+minimum_brightness = 0.28999999351799488
 
 [desktop_widgets]
 enabled = false
@@ -24,12 +32,15 @@ widget_order = []
 auto_hide = true
 reserve_space = false
 
+[hooks]
+started = "noctalia msg bluetooth-disable"
+
 [idle]
 behavior_order = [ "lock", "screen-off", "lock-and-suspend" ]
 
     [idle.behavior.lock]
     action = "lock"
-    enabled = true
+    enabled = false
     timeout = 300.0
 
     [idle.behavior.lock-and-suspend]
@@ -74,6 +85,7 @@ widget_order = [ "lockscreen-login-box@eDP-1" ]
 
 [shell]
 avatar_path = "/home/roychuang/Pictures/うれしい～_129479431.jpg"
+screen_time_enabled = true
 settings_show_advanced = true
 
     [shell.panel]
@@ -113,10 +125,6 @@ community_palette = "Oxocarbon"
 mode = "dark"
 source = "wallpaper"
 wallpaper_scheme = "m3-rainbow"
-
-    [theme.templates]
-    builtin_ids = [ "btop", "hyprland", "kcolorscheme", "qt", "starship" ]
-    community_ids = [ "zed", "yazi", "hyprtoolkit" ]
 
 [wallpaper.default]
 path = "/home/roychuang/Pictures/Wallpapers/pikasonic_fa_wall_paper.png"

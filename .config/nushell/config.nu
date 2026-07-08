@@ -37,6 +37,7 @@ alias cfnu = config nu
 alias cfhl = nvim ~/.config/hypr/hyprland.lua
 alias cfbu = nvim ~/dotfiles/pull_from_home.py
 alias rubu = python ~/dotfiles/pull_from_home.py
+alias cfkt = nvim ~/.config/kitty/kitty.conf
 
 def ytmdl [...args] {
     let opts = [

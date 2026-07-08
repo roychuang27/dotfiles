@@ -1,5 +1,4 @@
 source (/usr/bin/starship init fish --print-full-init | psub)
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 fish_add_path /home/roychuang/.local/share/gem/ruby/3.4.0/bin/
 fish_add_path /home/roychuang/.local/bin
