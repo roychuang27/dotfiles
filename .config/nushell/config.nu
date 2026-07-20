@@ -19,8 +19,6 @@ $env.config = ($env.config | merge deep {
 $env.EDITOR = "nvim"
 $env.CUDA_DIR = "/opt/cuda/"
 
-let brew_env = ^/home/linuxbrew/.linuxbrew/bin/brew shellenv
-
 use std/util "path add"
 path add $"($env.HOME)/.local/bin"
 path add $"($env.HOME)/.opencode/bin"

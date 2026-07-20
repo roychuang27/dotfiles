@@ -1,6 +1,6 @@
 [Added Associations]
 application/pdf=okularApplication_pdf.desktop;brave-browser.desktop;org.kde.calligra.karbon.desktop;librewolf.desktop;libreoffice-draw.desktop;
-application/vnd.openxmlformats-officedocument.wordprocessingml.document=okularApplication_docx_calligra.desktop;libreoffice-writer.desktop;org.kde.calligra.words.desktop;org.kde.ark.desktop;org.gnome.Nautilus.desktop;sh.ppy.osu.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=org.kde.okular.desktop;libreoffice-writer.desktop;org.kde.ark.desktop;org.gnome.Nautilus.desktop;sh.ppy.osu.desktop;
 application/x-powershell=neovide.desktop;
 application/x-shellscript=neovide.desktop;
 application/x-zerosize=mpv.desktop;
@@ -12,7 +12,7 @@ text/x-python=neovide.desktop;org.kde.kwrite.desktop;vim.desktop;org.kde.kate.de
 
 [Default Applications]
 application/pdf=okularApplication_pdf.desktop;
-application/vnd.openxmlformats-officedocument.wordprocessingml.document=okularApplication_docx_calligra.desktop;
+application/vnd.openxmlformats-officedocument.wordprocessingml.document=org.kde.okular.desktop;
 application/x-powershell=neovide.desktop
 application/x-zerosize=mpv.desktop
 image/jpeg=org.kde.gwenview.desktop;

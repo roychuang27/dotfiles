@@ -20,8 +20,8 @@ HOME = Path.home()
 EXCLUDE = {
     ".git",
     ".gitignore",
-    "sync.py",
-    "backup.py",
+    "pull_from_home.py",
+    "push_to_home.py",
     ".clangd",
     ".clang-format",
     "Microsoft.PowerShell_profile.ps1",
