@@ -127,6 +127,9 @@ mode = "dark"
 source = "wallpaper"
 wallpaper_scheme = "m3-rainbow"
 
+    [theme.templates]
+    builtin_ids = [ "qt" ]
+
 [wallpaper.default]
 path = "/home/roychuang/Pictures/Wallpapers/pikasonic_fa_wall_paper.png"
 
@@ -145,3 +148,6 @@ hide_when_no_media = true
 
 [widget.network]
 show_label = false
+
+[widget.workspaces]
+hide_when_empty = true

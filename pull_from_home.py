@@ -14,7 +14,8 @@ import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent
-HOME = Path.home()
+HOME = Path(__file__).resolve().parent.parent
+# HOME = Path.home()
 
 # Relative paths from HOME — script builds HOME/<path> -> REPO/<path>
 PATHS = [
@@ -33,6 +34,7 @@ PATHS = [
     ".config/nvim/snippets/",
     ".config/qt6ct/qt6ct.conf",
     ".local/state/noctalia/settings.toml",
+    ".config/niri/config.kdl",
 ]
 
 
