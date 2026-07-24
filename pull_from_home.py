@@ -14,8 +14,7 @@ import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent
-HOME = Path(__file__).resolve().parent.parent
-# HOME = Path.home()
+HOME = Path.home()
 
 # Relative paths from HOME — script builds HOME/<path> -> REPO/<path>
 PATHS = [

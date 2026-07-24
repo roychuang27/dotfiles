@@ -93,7 +93,7 @@ layout {
     preset-column-widths {
         proportion 0.33333
         proportion 0.5
-        proportion 0.8
+        proportion 0.75
     }
 
     preset-window-heights {
@@ -125,13 +125,6 @@ layout {
 
     insert-hint {
         color "#39c5bb"
-    }
-
-    struts {
-        left 5
-        right 5
-        top 2
-        bottom 2
     }
 }
 
@@ -221,8 +214,8 @@ blur {
 }
 
 window-rule {
-    match app-id=".*"
     open-maximized false
+    open-maximized-to-edges false
 }
 
 window-rule {
@@ -247,11 +240,17 @@ window-rule {
     clip-to-geometry true
 }
 
+window-rule {
+    match app-id="Spotify" // or your specific terminal app ID
+    default-window-height { proportion 1.0; }
+}
+
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     Mod+Return hotkey-overlay-title="Open a Terminal" { spawn "kitty"; }
     Mod+R hotkey-overlay-title="Open Noctalia Launcher" { spawn-sh "noctalia msg panel-toggle launcher"; }
+    Mod+Backspace { spawn-sh "noctalia msg panel-toggle session"; }
 
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"; }
@@ -352,9 +351,7 @@ binds {
     Mod+Period { expel-window-from-column; }
 
     Mod+P { switch-preset-column-width; }
-    Mod+Shift+P { switch-preset-column-width-back; }
-
-    Mod+Ctrl+Shift+P { switch-preset-window-height; }
+    Mod+Shift+P { switch-preset-window-height; }
     Mod+Ctrl+P { reset-window-height; }
 
     Mod+F { maximize-column; }

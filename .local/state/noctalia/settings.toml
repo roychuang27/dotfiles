@@ -6,7 +6,7 @@ enable_sounds = true
 
 [bar.default]
 background_opacity = 0.59999998658895493
-margin_edge = 0
+concave_edge_corners = false
 margin_ends = 0
 padding = 20
 radius = 0
@@ -87,6 +87,7 @@ widget_order = [ "lockscreen-login-box@eDP-1" ]
 
 [shell]
 avatar_path = "/home/roychuang/Pictures/うれしい～_129479431.jpg"
+corner_radius_scale = 0.0
 screen_time_enabled = true
 settings_show_advanced = true
 
@@ -94,19 +95,23 @@ settings_show_advanced = true
     shadow = false
     transparency_mode = "soft"
 
-    [[shell.session.actions]]
-    action = "reboot"
-    countdown_seconds = 0.0
-    enabled = true
-    shortcut = "1"
-    variant = "default"
+    [shell.session]
+    grid = true
+    grid_columns = 4
 
-    [[shell.session.actions]]
-    action = "shutdown"
-    countdown_seconds = 0.0
-    enabled = true
-    shortcut = "2"
-    variant = "destructive"
+        [[shell.session.actions]]
+        action = "shutdown"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "1"
+        variant = "destructive"
+
+        [[shell.session.actions]]
+        action = "reboot"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "2"
+        variant = "default"
 
 [theme]
 builtin = "Tokyo-Night"
