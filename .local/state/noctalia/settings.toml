@@ -92,34 +92,20 @@ settings_show_advanced = true
 
     [shell.panel]
     shadow = false
+    transparency_mode = "soft"
 
     [[shell.session.actions]]
-    action = "lock"
+    action = "reboot"
     countdown_seconds = 0.0
     enabled = true
     shortcut = "1"
     variant = "default"
 
     [[shell.session.actions]]
-    action = "logout"
-    command = "command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"
-    countdown_seconds = 0.0
-    enabled = true
-    shortcut = "2"
-    variant = "default"
-
-    [[shell.session.actions]]
-    action = "reboot"
-    countdown_seconds = 0.0
-    enabled = true
-    shortcut = "3"
-    variant = "default"
-
-    [[shell.session.actions]]
     action = "shutdown"
     countdown_seconds = 0.0
     enabled = true
-    shortcut = "4"
+    shortcut = "2"
     variant = "destructive"
 
 [theme]
