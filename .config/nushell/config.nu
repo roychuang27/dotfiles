@@ -36,7 +36,7 @@ def neovide [] {
 }
 
 alias cfnu = config nu
-def cfnu [] { ^$env.EDITOR ~/.config/nushell/config.nu }
+alias acvenv = overlay use .venv/bin/activate.nu
 def cfhl [] { ^$env.EDITOR ~/.config/hypr/hyprland.lua }
 def cfbu [] { ^$env.EDITOR ~/dotfiles/pull_from_home.py }
 def rubu [] { python ~/Projects/dotfiles/pull_from_home.py }

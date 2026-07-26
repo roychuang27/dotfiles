@@ -56,6 +56,18 @@ input {
 }
 
 gestures {
+    dnd-edge-view-scroll {
+        trigger-width 30
+        delay-ms 100
+        max-speed 1500
+    }
+
+    dnd-edge-workspace-switch {
+        trigger-height 50
+        delay-ms 100
+        max-speed 1500
+    }
+
     hot-corners {
         bottom-right
     }
@@ -66,9 +78,9 @@ environment {
 
     XDG_MENU_PREFIX "plasma-"
 
-    XDG_CURRENT_DESKTOP "niri"
-    XDG_SESSION_DESKTOP "niri"
-    XDG_SESSION_TYPE "wayland"
+    // XDG_CURRENT_DESKTOP "niri"
+    // XDG_SESSION_DESKTOP "niri"
+    // XDG_SESSION_TYPE "wayland"
 }
 
 cursor {
@@ -91,15 +103,11 @@ layout {
 
     // You can customize the widths that "switch-preset-column-width" (Mod+R) toggles between.
     preset-column-widths {
-        proportion 0.33333
         proportion 0.5
-        proportion 0.75
     }
 
     preset-window-heights {
-        proportion 0.33333
         proportion 0.5
-        proportion 0.75
     }
 
     default-column-width { proportion 0.75; }
@@ -389,7 +397,7 @@ binds {
 
     Mod+S { toggle-column-tabbed-display; }
     Mod+W { spawn "brave"; }
-    Mod+E { spawn "dolphin"; }
+    Mod+E { spawn-sh "kitty yazi"; }
 
     // Actions to switch layouts.
     // Note: if you uncomment these, make sure you do NOT have

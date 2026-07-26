@@ -4,10 +4,13 @@ application/vnd.openxmlformats-officedocument.wordprocessingml.document=org.kde.
 application/x-powershell=neovide.desktop;
 application/x-shellscript=neovide.desktop;
 application/x-zerosize=mpv.desktop;
+audio/flac=mpv.desktop;vlc.desktop;org.kde.haruna.desktop;
 audio/vnd.wave=mpv.desktop;org.kde.haruna.desktop;
+audio/x-mpegurl=mpv.desktop;vlc.desktop;org.kde.haruna.desktop;org.kde.kate.desktop;vim.desktop;nvim.desktop;org.kde.kwrite.desktop;okularApplication_txt.desktop;
 image/jpeg=org.kde.gwenview.desktop;brave-browser.desktop;
 image/png=/home/roychuang/.local/share/applications/gwenview.desktop;org.kde.gwenview.desktop;
 image/x-xcursor=org.kde.ark.desktop;org.kde.gwenview.desktop;
+inode/directory=mpv-2.desktop;
 text/html=neovide.desktop;brave-browser.desktop;librewolf.desktop;vim.desktop;codium.desktop;nvim.desktop;
 text/x-python=neovide.desktop;org.kde.kwrite.desktop;vim.desktop;org.kde.kate.desktop;okularApplication_txt.desktop;nvim.desktop;codium.desktop;
 
@@ -16,9 +19,12 @@ application/pdf=okularApplication_pdf.desktop;
 application/vnd.openxmlformats-officedocument.wordprocessingml.document=org.kde.okular.desktop;
 application/x-powershell=neovide.desktop
 application/x-zerosize=mpv.desktop
+audio/flac=mpv.desktop;
 audio/vnd.wave=mpv.desktop;
+audio/x-mpegurl=mpv.desktop;
 image/jpeg=org.kde.gwenview.desktop;
 image/png=org.kde.gwenview.desktop
+inode/directory=mpv-2.desktop;
 text/html=brave-browser.desktop
 text/x-python=neovide.desktop;
 x-scheme-handler/about=brave-browser.desktop
@@ -26,3 +32,6 @@ x-scheme-handler/discord-1216669957799018608=discord-1216669957799018608.desktop
 x-scheme-handler/http=brave-browser.desktop
 x-scheme-handler/https=brave-browser.desktop
 x-scheme-handler/unknown=brave-browser.desktop
+
+[Removed Associations]
+inode/directory=mpv-2.desktop;org.gnome.Nautilus.desktop;org.kde.gwenview.desktop;kitty-open.desktop;org.kde.kate.desktop;yazi.desktop;org.kde.dolphin.desktop;
