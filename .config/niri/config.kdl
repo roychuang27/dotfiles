@@ -110,7 +110,7 @@ layout {
         proportion 0.5
     }
 
-    default-column-width { proportion 0.75; }
+    default-column-width { proportion 1.0; }
 
     border { off; }
 
@@ -139,6 +139,7 @@ layout {
 spawn-at-startup "noctalia"
 spawn-at-startup "solaar" "-w" "hide"
 spawn-at-startup "jamesdsp" "-t"
+spawn-at-startup "fcitx5" "-d"
 
 hotkey-overlay { skip-at-startup; }
 prefer-no-csd
@@ -224,6 +225,12 @@ blur {
 window-rule {
     open-maximized false
     open-maximized-to-edges false
+    max-width 1260
+    max-height 700
+    background-effect {
+        xray false
+        blur false
+    }
 }
 
 window-rule {
@@ -397,7 +404,7 @@ binds {
 
     Mod+S { toggle-column-tabbed-display; }
     Mod+W { spawn "brave"; }
-    Mod+E { spawn-sh "kitty yazi"; }
+    Mod+E { spawn "kitty" "-e" "yazi"; }
 
     // Actions to switch layouts.
     // Note: if you uncomment these, make sure you do NOT have

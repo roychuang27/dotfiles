@@ -6,7 +6,7 @@ hl.monitor({
 })
 
 local terminal    = "kitty"
-local fileManager = "dolphin"
+local fileManager = terminal .. " -e yazi"
 local menu        = "noctalia msg panel-toggle launcher"
 local browser     = "brave"
 
@@ -18,12 +18,11 @@ hl.on("hyprland.start", function ()
 end)
 
 local HOME = os.getenv("HOME")
-hl.env("XCURSOR_SIZE", "30")
-hl.env("HYPRCURSOR_SIZE", "30")
-hl.env("HYPRCURSOR_THEME", "posy_cursor_black")
-hl.env("XCURSOR_THEME", "posy_cursor_black")
+hl.env("XCURSOR_SIZE", "27")
+hl.env("HYPRCURSOR_SIZE", "27")
+hl.env("HYPRCURSOR_THEME", "Posy_Cursor_Black_125_175")
+hl.env("XCURSOR_THEME", "Posy_Cursor_Black_125_175")
 hl.env("QT_QPA_PLATFORMTHEME", "qt6ct")
-hl.env("XDG_MENU_PREFIX", "arch-")
 hl.env("HYPRLAND_TRACE", "1")
 hl.env("XDG_CURRENT_DESKTOP", "Hyprland")
 hl.env("XDG_SESSION_TYPE", "wayland")
@@ -52,14 +51,14 @@ hl.config({
     general = {
         gaps_in  = 2,
         gaps_out = 7,
-        border_size = 2,
+        border_size = 3,
         col = {
             active_border   = { colors = {"rgba(33ccffee)", "rgba(00ff99ee)"}, angle = 45 },
             inactive_border = "rgba(595959aa)",
         },
         resize_on_border = false,
         allow_tearing = false,
-        layout = "master",
+        layout = "dwindle",
     },
 
     decoration = {
@@ -67,7 +66,7 @@ hl.config({
         rounding_power = 2,
 
         active_opacity   = 1.0,
-        inactive_opacity = 0.7,
+        inactive_opacity = 1.0,
 
         shadow = {
             enabled      = false,
@@ -96,27 +95,23 @@ hl.curve("linear",         { type = "bezier", points = { {0, 0},       {1, 1}   
 hl.curve("almostLinear",   { type = "bezier", points = { {0.5, 0.5},   {0.75, 1}    } })
 hl.curve("quick",          { type = "bezier", points = { {0.15, 0},    {0.1, 1}     } })
 
--- Default springs
-hl.curve("easy",           { type = "spring", mass = 1, stiffness = 71.2633, dampening = 15.8273644 })
-
-hl.animation({ leaf = "global",        enabled = true,  speed = 3,   bezier = "quick" })
--- hl.animation({ leaf = "border",        enabled = true,  speed = 5.39, bezier = "easeOutQuint" })
--- hl.animation({ leaf = "windows",       enabled = true,  speed = 4.79, spring = "easy" })
--- hl.animation({ leaf = "windowsIn",     enabled = true,  speed = 4.1,  spring = "easy",         style = "popin 87%" })
--- hl.animation({ leaf = "windowsOut",    enabled = true,  speed = 1.49, bezier = "linear",       style = "popin 87%" })
--- hl.animation({ leaf = "fadeIn",        enabled = true,  speed = 1.73, bezier = "almostLinear" })
--- hl.animation({ leaf = "fadeOut",       enabled = true,  speed = 1.46, bezier = "almostLinear" })
--- hl.animation({ leaf = "fade",          enabled = true,  speed = 3.03, bezier = "quick" })
--- hl.animation({ leaf = "layers",        enabled = true,  speed = 3.81, bezier = "easeOutQuint" })
--- hl.animation({ leaf = "layersIn",      enabled = true,  speed = 4,    bezier = "easeOutQuint", style = "fade" })
--- hl.animation({ leaf = "layersOut",     enabled = true,  speed = 1.5,  bezier = "linear",       style = "fade" })
--- hl.animation({ leaf = "fadeLayersIn",  enabled = true,  speed = 1.79, bezier = "almostLinear" })
--- hl.animation({ leaf = "fadeLayersOut", enabled = true,  speed = 1.39, bezier = "almostLinear" })
--- hl.animation({ leaf = "workspaces",    enabled = true,  speed = 1.94, bezier = "almostLinear", style = "fade" })
--- hl.animation({ leaf = "workspacesIn",  enabled = true,  speed = 1.21, bezier = "almostLinear", style = "fade" })
--- hl.animation({ leaf = "workspacesOut", enabled = true,  speed = 1.94, bezier = "almostLinear", style = "fade" })
--- hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 7,    bezier = "quick" })
-
+hl.animation({ leaf = "global",        enabled = true,  speed = 1, bezier = "quick"})
+hl.animation({ leaf = "border",        enabled = true,  speed = 1, bezier = "easeOutQuint" })
+hl.animation({ leaf = "windows",       enabled = true,  speed = 1, bezier = "linear" })
+hl.animation({ leaf = "windowsIn",     enabled = true,  speed = 1, bezier = "linear",       style = "popin 87%" })
+hl.animation({ leaf = "windowsOut",    enabled = true,  speed = 1, bezier = "linear",       style = "popin 87%" })
+hl.animation({ leaf = "fadeIn",        enabled = true,  speed = 1, bezier = "almostLinear" })
+hl.animation({ leaf = "fadeOut",       enabled = true,  speed = 1, bezier = "almostLinear" })
+hl.animation({ leaf = "fade",          enabled = true,  speed = 1, bezier = "quick" })
+hl.animation({ leaf = "layers",        enabled = true,  speed = 1, bezier = "easeOutQuint" })
+hl.animation({ leaf = "layersIn",      enabled = true,  speed = 1, bezier = "easeOutQuint", style = "fade" })
+hl.animation({ leaf = "layersOut",     enabled = true,  speed = 1, bezier = "linear",       style = "fade" })
+hl.animation({ leaf = "fadeLayersIn",  enabled = true,  speed = 1, bezier = "almostLinear" })
+hl.animation({ leaf = "fadeLayersOut", enabled = true,  speed = 1, bezier = "almostLinear" })
+hl.animation({ leaf = "workspaces",    enabled = true,  speed = 1, bezier = "almostLinear", style = "fade" })
+hl.animation({ leaf = "workspacesIn",  enabled = true,  speed = 1, bezier = "almostLinear", style = "fade" })
+hl.animation({ leaf = "workspacesOut", enabled = true,  speed = 1, bezier = "almostLinear", style = "fade" })
+hl.animation({ leaf = "zoomFactor",    enabled = true,  speed = 1, bezier = "quick" })
 
 hl.config({
     dwindle = {
@@ -176,13 +171,14 @@ local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 -- hl.bind("ALT + F4", hl.dsp.window.close())
--- hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
+hl.bind("CTRL + ALT + DELETE", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. " + B", hl.dsp.exec_cmd("noctalia msg bar-toggle"))
+hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))
 
 hl.bind(mainMod .. " + Space", hl.dsp.layout("swapwithmaster master"))
 hl.bind(mainMod .. " + Tab", hl.dsp.layout("cyclenext"))

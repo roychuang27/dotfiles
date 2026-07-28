@@ -42,6 +42,8 @@ def cfbu [] { ^$env.EDITOR ~/dotfiles/pull_from_home.py }
 def rubu [] { python ~/Projects/dotfiles/pull_from_home.py }
 def cfkt [] { ^$env.EDITOR ~/.config/kitty/kitty.conf }
 def cfnr [] { ^$env.EDITOR ~/.config/niri/config.kdl }
+def cfmime [] { ^$env.EDITOR ~/.config/mimeapps.list }
+def cfmg [] { ^$env.EDITOR ~/.config/mango/config.conf }
 
 def ytmdl [...args] {
     let opts = [
