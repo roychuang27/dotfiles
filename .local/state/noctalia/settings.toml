@@ -150,6 +150,7 @@ settings_show_advanced = true
 builtin = "Tokyo-Night"
 community_palette = "Oxocarbon"
 mode = "dark"
+pure_black_dark = true
 source = "wallpaper"
 wallpaper_scheme = "m3-rainbow"
 
@@ -157,13 +158,13 @@ wallpaper_scheme = "m3-rainbow"
     builtin_ids = [ "qt" ]
 
 [wallpaper.default]
-path = "/home/roychuang/Pictures/Wallpapers/pikasonic_fa_wall_paper.png"
+path = "/home/roychuang/Pictures/Wallpapers/wyjTBRi.jpg"
 
 [wallpaper.last]
-path = "/home/roychuang/Pictures/Wallpapers/pikasonic_fa_wall_paper.png"
+path = "/home/roychuang/Pictures/Wallpapers/wyjTBRi.jpg"
 
 [wallpaper.monitors.eDP-1]
-path = "/home/roychuang/Pictures/Wallpapers/pikasonic_fa_wall_paper.png"
+path = "/home/roychuang/Pictures/Wallpapers/wyjTBRi.jpg"
 
 [widget.brightness]
 show_label = false

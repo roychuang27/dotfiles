@@ -34,7 +34,8 @@ PATHS = [
     ".config/qt6ct/qt6ct.conf",
     ".local/state/noctalia/settings.toml",
     ".config/niri/config.kdl",
-    ".config/mango/config.conf"
+    ".config/mango/config.conf",
+    ".local/bin"
 ]
 
 
