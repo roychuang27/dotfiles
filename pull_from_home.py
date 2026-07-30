@@ -3,8 +3,7 @@
 
 Usage:  python sync.py [--dry-run]
 
-Only files and directories listed in PATHS are synced.
-Add/remove entries as needed.
+Paths are read from watching_files.txt — one relative path per line.
 """
 
 import filecmp
@@ -16,27 +15,15 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent
 HOME = Path.home()
 
-# Relative paths from HOME — script builds HOME/<path> -> REPO/<path>
-PATHS = [
-    ".bashrc",
-    ".bash_profile",
-    ".vimrc",
-    ".tmux.conf",
-    ".config/mimeapps.list",
-    ".config/fish/config.fish",
-    ".config/fontconfig/fonts.conf",
-    ".config/hypr/hyprland.lua",
-    ".config/kitty/kitty.conf",
-    ".config/nushell/config.nu",
-    ".config/nvim/init.lua",
-    ".config/nvim/lua/",
-    ".config/nvim/snippets/",
-    ".config/qt6ct/qt6ct.conf",
-    ".local/state/noctalia/settings.toml",
-    ".config/niri/config.kdl",
-    ".config/mango/config.conf",
-    ".local/bin"
-]
+
+def read_watching_paths() -> list[str]:
+    paths = []
+    with open(REPO / "watching_files.txt") as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#"):
+                paths.append(line)
+    return paths
 
 
 def sync_file(src: Path, dst: Path, dry_run: bool) -> bool:
@@ -93,7 +80,7 @@ def main() -> None:
     os.chdir(REPO)
 
     any_copied = False
-    for rel in PATHS:
+    for rel in read_watching_paths():
         src = HOME / rel
         dst = REPO / rel
         try:

@@ -3,8 +3,7 @@
 
 Usage:  python sync.py [--dry-run]
 
-Automatically syncs every file in the repo (except EXCLUDE entries),
-prompting on conflicts per file.
+Paths are read from watching_files.txt — only those files are deployed.
 """
 
 import filecmp
@@ -17,15 +16,15 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent
 HOME = Path.home()
 
-EXCLUDE = {
-    ".git",
-    ".gitignore",
-    "pull_from_home.py",
-    "push_to_home.py",
-    ".clangd",
-    ".clang-format",
-    "Microsoft.PowerShell_profile.ps1",
-}
+
+def read_watching_paths() -> list[str]:
+    paths = []
+    with open(REPO / "watching_files.txt") as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#"):
+                paths.append(line)
+    return paths
 
 
 def backup_path(p: Path) -> Path:
@@ -37,22 +36,6 @@ def files_differ(src: Path, dst: Path) -> bool:
     return dst.exists() and not filecmp.cmp(src, dst, shallow=False)
 
 
-def is_excluded(rel: Path) -> bool:
-    for part in rel.parts:
-        if str(part) in EXCLUDE or str(rel) in EXCLUDE:
-            return True
-    return False
-
-
-def collect_files() -> list[Path]:
-    files = []
-    for entry in REPO.rglob("*"):
-        if not entry.is_file():
-            continue
-        rel = entry.relative_to(REPO)
-        if not is_excluded(rel):
-            files.append(rel)
-    return files
 
 
 def deploy_file(src: Path, dst: Path, dry_run: bool) -> None:
@@ -85,12 +68,12 @@ def main() -> None:
     dry_run = "--dry-run" in sys.argv
     os.chdir(REPO)
 
-    files = collect_files()
-    if not files:
+    paths = read_watching_paths()
+    if not paths:
         print("Nothing to deploy.")
         return
 
-    for rel in files:
+    for rel in paths:
         src = REPO / rel
         dst = HOME / rel
         try:

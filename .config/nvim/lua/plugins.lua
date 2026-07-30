@@ -191,12 +191,6 @@ return {
                 "json",
                 "lua",
             })
-            vim.api.nvim_create_autocmd("FileType", {
-                pattern = { "python", "c", "cpp", "javascript", "javascriptreact", "typescript", "typescriptreact", "html", "css", "json", "lua" },
-                callback = function()
-                    vim.treesitter.start()
-                end,
-            })
         end,
     },
     {

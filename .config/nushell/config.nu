@@ -26,6 +26,7 @@ $env.CUDA_DIR = "/opt/cuda/"
 use std/util "path add"
 path add $"($env.HOME)/.local/bin"
 path add $"($env.HOME)/.opencode/bin"
+path add "/opt/android-sdk/platform-tools"
 
 alias vide = neovide
 alias ll = ls -la

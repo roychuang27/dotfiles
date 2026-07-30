@@ -57,7 +57,7 @@ behavior_order = [ "lock", "screen-off", "lock-and-suspend" ]
 
     [idle.behavior.screen-off]
     action = "screen_off"
-    enabled = false
+    enabled = true
     timeout = 300.0
 
 [location]
@@ -144,6 +144,12 @@ settings_show_advanced = true
         countdown_seconds = 0.0
         enabled = true
         shortcut = "2"
+        variant = "default"
+
+        [[shell.session.actions]]
+        action = "lock"
+        countdown_seconds = 0.0
+        enabled = true
         variant = "default"
 
 [theme]
