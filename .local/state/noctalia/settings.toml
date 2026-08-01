@@ -5,13 +5,14 @@ enable_overdrive = true
 enable_sounds = true
 
 [bar.default]
-background_opacity = 0.39999999105930328
+background_opacity = 0.3899999912828207
 capsule_opacity = 0.39999999105930328
+center = [ "active_window" ]
 concave_edge_corners = false
+end = [ "tray", "notifications", "clipboard", "volume", "battery", "clock", "session" ]
 margin_ends = 0
 padding = 20
 radius = 0
-start = [ "launcher", "wallpaper", "workspaces", "active_window" ]
 thickness = 30
 
 [brightness]
@@ -178,20 +179,28 @@ path = "/home/roychuang/Pictures/Wallpapers/pikasonic_fa_wall_paper.png"
 [widget.active_window]
 color = "on_surface"
 
+[widget.bluetooth]
+enabled = false
+
 [widget.brightness]
+enabled = false
 show_label = false
 
 [widget.clock]
 font_weight = 700
+format = "%a %D %H:%M"
 
 [widget.control-center]
 glyph = "navigation"
 
 [widget.media]
 album_art_only = true
+capsule_radius = "auto"
 hide_when_no_media = true
+max_length = 150
 
 [widget.network]
+enabled = false
 show_label = false
 
 [widget.workspaces]

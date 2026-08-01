@@ -1,0 +1,17 @@
+[Desktop Entry]
+Version=1.5
+Type=Application
+Name=osu!
+Comment=A free-to-win rhythm game. Rhythm is just a *click* away!
+Icon=sh.ppy.osu
+Exec=prime-run /usr/bin/flatpak run --branch=stable --arch=x86_64 --command=start-osu --file-forwarding sh.ppy.osu @@ %F @@
+Terminal=false
+MimeType=application/x-osu-beatmap;application/x-osu-beatmap-archive;application/x-osu-skin-archive;application/x-osu-storyboard;application/x-osu-replay;application/zip;x-scheme-handler/osu
+Categories=Game;
+StartupWMClass=osu!
+SingleMainWindow=true
+StartupNotify=true
+X-AppImage-Version=2026.726.0-lazer
+X-Desktop-File-Install-Version=0.28
+X-Flatpak-RenamedFrom=osu!.desktop
+X-Flatpak=sh.ppy.osu

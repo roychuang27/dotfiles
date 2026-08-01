@@ -15,7 +15,7 @@
 .local/state/noctalia/settings.toml
 .config/niri/config.kdl
 .config/mango/config.conf
-.local/bin
+.local/bin/
 .config/BraveSoftware/Brave-Browser/Default/Preferences
 .config/starship.toml
 .config/noctalia/

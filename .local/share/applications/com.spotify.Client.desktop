@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Name=Spotify
+GenericName=Music Player
+Icon=com.spotify.Client
+Exec=/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=spotify --file-forwarding com.spotify.Client @@u %U @@
+Terminal=false
+MimeType=x-scheme-handler/spotify;
+Categories=Audio;Music;Player;AudioVideo;
+StartupWMClass=spotify
+X-GNOME-UsesNotifications=true
+X-Flatpak-Tags=proprietary;
+X-Flatpak=com.spotify.Client

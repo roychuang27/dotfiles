@@ -39,8 +39,8 @@ def neovide [] {
 alias cfnu = config nu
 alias acvenv = overlay use .venv/bin/activate.nu
 def cfhl [] { ^$env.EDITOR ~/.config/hypr/hyprland.lua }
-def cfbu [] { ^$env.EDITOR ~/dotfiles/pull_from_home.py }
-def rubu [] { python ~/Projects/dotfiles/pull_from_home.py }
+def rubu [] { sh ~/Projects/dotfiles/pull_from_home.sh }
+def cfbu [] { ^$env.EDITOR ~/Projects/dotfiles/watching_files.txt }
 def cfkt [] { ^$env.EDITOR ~/.config/kitty/kitty.conf }
 def cfnr [] { ^$env.EDITOR ~/.config/niri/config.kdl }
 def cfmime [] { ^$env.EDITOR ~/.config/mimeapps.list }
@@ -61,7 +61,7 @@ def ytmdl [...args] {
     ^yt-dlp ...$opts ...$args
 }
 
-def --env yz [...args] {
+def --env y [...args] {
         let tmp = (mktemp -t "yazi-cwd.XXXXXX")
         ^yazi ...$args --cwd-file $tmp
         let cwd = (open $tmp)
