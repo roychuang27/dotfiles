@@ -19,3 +19,6 @@
 .config/BraveSoftware/Brave-Browser/Default/Preferences
 .config/starship.toml
 .config/noctalia/
+.local/share/applications/
+.config/foot/
+.zshrc

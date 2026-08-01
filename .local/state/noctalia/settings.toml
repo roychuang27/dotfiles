@@ -5,12 +5,12 @@ enable_overdrive = true
 enable_sounds = true
 
 [bar.default]
-background_opacity = 0.59999998658895493
+background_opacity = 0.39999999105930328
+capsule_opacity = 0.39999999105930328
 concave_edge_corners = false
 margin_ends = 0
 padding = 20
 radius = 0
-shadow = false
 start = [ "launcher", "wallpaper", "workspaces", "active_window" ]
 thickness = 30
 
@@ -125,8 +125,11 @@ screen_time_enabled = true
 settings_show_advanced = true
 
     [shell.panel]
+    control_center_placement = "floating"
+    list_item_background = true
     shadow = false
     transparency_mode = "soft"
+    wallpaper_placement = "floating"
 
     [shell.session]
     grid = true
@@ -164,16 +167,25 @@ wallpaper_scheme = "m3-rainbow"
     builtin_ids = [ "qt" ]
 
 [wallpaper.default]
-path = "/home/roychuang/Pictures/Wallpapers/wyjTBRi.jpg"
+path = "/home/roychuang/Pictures/Wallpapers/pikasonic_fa_wall_paper.png"
 
 [wallpaper.last]
-path = "/home/roychuang/Pictures/Wallpapers/wyjTBRi.jpg"
+path = "/home/roychuang/Pictures/Wallpapers/pikasonic_fa_wall_paper.png"
 
 [wallpaper.monitors.eDP-1]
-path = "/home/roychuang/Pictures/Wallpapers/wyjTBRi.jpg"
+path = "/home/roychuang/Pictures/Wallpapers/pikasonic_fa_wall_paper.png"
+
+[widget.active_window]
+color = "on_surface"
 
 [widget.brightness]
 show_label = false
+
+[widget.clock]
+font_weight = 700
+
+[widget.control-center]
+glyph = "navigation"
 
 [widget.media]
 album_art_only = true

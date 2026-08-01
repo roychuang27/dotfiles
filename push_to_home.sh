@@ -20,10 +20,12 @@ _deploy_file() {
       return
     esac
     ts=$(date +%Y%m%d_%H%M%S)
-    bak="$_df_dst.bak.$ts"
+    rel="${_df_dst#"$HOME"/}"
+    bak="$REPO/.backup/$rel.$ts"
     if [ "$dry_run" = true ]; then
       echo "    WOULD BACKUP $_df_dst -> $bak"
     else
+      mkdir -p "$(dirname "$bak")"
       mv "$_df_dst" "$bak"
       echo "    BACKUP  $_df_dst -> $bak"
     fi
