@@ -71,5 +71,10 @@ def --env y [...args] {
         ^rm -f $tmp
 }
 
+if "TMUX" not-in $env {
+    ^tmux
+    exit
+}
+
 source ~/.starship.nu
 source ~/.zoxide.nu
