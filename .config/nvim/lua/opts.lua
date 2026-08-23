@@ -19,6 +19,8 @@ vim.opt.number = true
 vim.opt.relativenumber = false
 vim.opt.wrap = false
 vim.opt.cursorline = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
 vim.opt.tabstop = 8
 vim.opt.shiftwidth = 8

@@ -30,17 +30,6 @@ return {
         { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
       },
     },
-    {
-        "sainnhe/everforest",
-        -- event = "VeryLazy",
-        priority = 1000,
-        config = function()
-            vim.g.everforest_enable_italic = true
-            vim.g.everforest_background = 'hard'
-            vim.g.everforest_better_performance = 1
-            vim.cmd.colorscheme("everforest")
-        end,
-    },
     -- {
     --     'loganswartz/selenized.nvim',
     --     dependencies = {
@@ -51,47 +40,47 @@ return {
     --         vim.cmd.colorscheme("selenized")
     --     end,
     -- },
-    {
-        "vim-airline/vim-airline",
-        config = function()
-            if vim.g.vscode then
-                vim.g.airline_enabled = 0
-                vim.cmd("AirlineToggle")
-            end
-        end,
-    },
-    {
-      "nvim-lualine/lualine.nvim",
-      dependencies = {
-        "nvim-tree/nvim-web-devicons",
-      },
-      config = function()
-        require("lualine").setup({
-          options = {
-            theme = "auto",
-            globalstatus = true,
-            component_separators = { left = "", right = "" },
-            section_separators = { left = "", right = "" },
-          },
-          sections = {
-            lualine_a = { "mode" },
-            lualine_b = { "branch", "diff", "diagnostics" },
-            lualine_c = { { "filename", path = 1 } },
-            lualine_x = { "encoding", "fileformat", "filetype" },
-            lualine_y = { "progress" },
-            lualine_z = { "location" },
-          },
-          inactive_sections = {
-            lualine_a = {},
-            lualine_b = {},
-            lualine_c = { { "filename", path = 1 } },
-            lualine_x = { "location" },
-            lualine_y = {},
-            lualine_z = {},
-          },
-        })
-      end,
-    },
+    -- {
+    --     "vim-airline/vim-airline",
+    --     config = function()
+    --         if vim.g.vscode then
+    --             vim.g.airline_enabled = 0
+    --             vim.cmd("AirlineToggle")
+    --         end
+    --     end,
+    -- },
+    -- {
+    --   "nvim-lualine/lualine.nvim",
+    --   dependencies = {
+    --     "nvim-tree/nvim-web-devicons",
+    --   },
+    --   config = function()
+    --     require("lualine").setup({
+    --       options = {
+    --         theme = "auto",
+    --         globalstatus = true,
+    --         component_separators = { left = "", right = "" },
+    --         section_separators = { left = "", right = "" },
+    --       },
+    --       sections = {
+    --         lualine_a = { "mode" },
+    --         lualine_b = { "branch", "diff", "diagnostics" },
+    --         lualine_c = { { "filename", path = 1 } },
+    --         lualine_x = { "encoding", "fileformat", "filetype" },
+    --         lualine_y = { "progress" },
+    --         lualine_z = { "location" },
+    --       },
+    --       inactive_sections = {
+    --         lualine_a = {},
+    --         lualine_b = {},
+    --         lualine_c = { { "filename", path = 1 } },
+    --         lualine_x = { "location" },
+    --         lualine_y = {},
+    --         lualine_z = {},
+    --       },
+    --     })
+    --   end,
+    -- },
     {
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",
@@ -143,28 +132,47 @@ return {
         end,
         dependencies = { "TheGLander/indent-rainbowline.nvim" },
     },
-    -- {
-    --     "nvim-tree/nvim-tree.lua",
-    --     config = function()
-    --         vim.g.loaded_netrw = 1
-    --         vim.g.loaded_netrwPlugin = 1
-    --         require("nvim-tree").setup({
-    --             sort = {
-    --                 sorter = "case_sensitive",
-    --             },
-    --             view = {
-    --                 width = 35,
-    --             },
-    --             renderer = {
-    --                 group_empty = true,
-    --             },
-    --             filters = {
-    --                 dotfiles = false,
-    --             },
-    --         })
-    --         vim.keymap.set("n", "<leader>nn", "<CMD>NvimTreeToggle<CR>")
-    --     end,
-    -- },
+    {
+        "nvim-tree/nvim-tree.lua",
+        config = function()
+            require("nvim-tree").setup({
+                sort = {
+                    sorter = "case_sensitive",
+                },
+                filters = { dotfiles = false },
+                disable_netrw = true,
+                hijack_cursor = true,
+                sync_root_with_cwd = true,
+                update_focused_file = {
+                  enable = true,
+                  update_root = false,
+                },
+                view = {
+                  width = 30,
+                  preserve_window_proportions = true,
+                },
+                renderer = {
+                  root_folder_label = false,
+                  highlight_git = true,
+                  indent_markers = { enable = true },
+                  icons = {
+                    glyphs = {
+                      default = "󰈚",
+                      folder = {
+                        default = "",
+                        empty = "",
+                        empty_open = "",
+                        open = "",
+                        symlink = "",
+                      },
+                      git = { unmerged = "" },
+                    },
+                  },
+                },
+            })
+            vim.keymap.set("n", "<leader>nn", "<CMD>NvimTreeToggle<CR>")
+        end,
+    },
     {
         "antosha417/nvim-lsp-file-operations",
         config = function()
@@ -229,6 +237,12 @@ return {
                 "json",
                 "lua",
             })
+            -- vim.api.nvim_create_autocmd("FileType", {
+            --     pattern = { "python", "c", "cpp", "javascript", "javascriptreact", "typescript", "typescriptreact", "html", "css", "json", "lua" },
+            --     callback = function()
+            --         vim.treesitter.start()
+            --     end,
+            -- })
         end,
     },
     {
@@ -294,6 +308,7 @@ return {
             "nvim-telescope/telescope-project.nvim",
         },
         config = function()
+            dofile(vim.g.base46_cache .. "telescope")
             local builtin = require("telescope.builtin")
             vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
             vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
@@ -330,7 +345,7 @@ return {
                     template = nil,
                     compile = {
                         main = 'g++',
-                        args = { '$FILENAME_WITH_EXTENSION', '-DLOCAL', '-std=c++23', '-o', '/home/roychuang/tmp/$FILENAME_WITHOUT_EXTENSION.out', '-Ibits/stdc++.h' },
+                        args = { '$FILENAME_WITH_EXTENSION', '-DLOCAL', '-std=c++23', '-o', '/tmp/$FILENAME_WITHOUT_EXTENSION.out', '-Ibits/stdc++.h' },
                     },
                     execute = {
                         main = '/home/roychuang/tmp/$FILENAME_WITHOUT_EXTENSION.out',
@@ -448,6 +463,7 @@ return {
             "saadparwaiz1/cmp_luasnip",
         },
         config = function()
+            dofile(vim.g.base46_cache .. "cmp")
             local luasnip = require("luasnip")
             local cmp = require("cmp")
             cmp.setup({
@@ -507,6 +523,31 @@ return {
             vim.api.nvim_command([[
                 autocmd ModeChanged * lua leave_snippet()
             ]])
+        end,
+    },
+    "nvzone/volt",
+    {
+       "nvchad/base46",
+       lazy = true,
+       build = function()
+         require("base46").load_all_highlights()
+       end,
+    },
+    {
+      "nvchad/ui",
+      config = function()
+          require "nvchad"
+      end
+    },
+    {
+        "sainnhe/everforest",
+        -- event = "VeryLazy",
+        priority = 1000,
+        config = function()
+            vim.g.everforest_enable_italic = true
+            vim.g.everforest_background = 'hard'
+            vim.g.everforest_better_performance = 1
+            vim.cmd.colorscheme("everforest")
         end,
     },
 }

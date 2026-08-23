@@ -1,4 +1,4 @@
-config_version = 8
+config_version = 12
 
 [audio]
 enable_overdrive = true
@@ -8,11 +8,22 @@ enable_sounds = true
 background_opacity = 0.3899999912828207
 capsule_opacity = 0.39999999105930328
 concave_edge_corners = false
-end = [ "tray", "notifications", "clipboard", "network", "bluetooth", "volume", "battery", "session" ]
+end = [
+    "tray",
+    "notifications",
+    "caffeine",
+    "clipboard",
+    "network",
+    "bluetooth",
+    "volume",
+    "brightness",
+    "battery",
+    "session"
+]
 margin_ends = 0
 padding = 20
 radius = 0
-start = [ "launcher", "wallpaper", "workspaces", "active_window" ]
+start = [ "launcher", "wallpaper", "btn", "workspaces", "active_window" ]
 thickness = 30
 
 [brightness]
@@ -140,6 +151,13 @@ widget_order = [ "lockscreen-login-box@WL-1", "lockscreen-login-box@winit", "loc
         show_login_button = true
         show_session_buttons = true
 
+[plugin_settings."ezequiel/mango_layouts"]
+panel_open_near_click = true
+panel_position = "auto"
+
+[plugins]
+enabled = [ "ezequiel/mango_layouts" ]
+
 [shell]
 avatar_path = "/home/roychuang/Pictures/うれしい～_129479431.jpg"
 popup_shadows = false
@@ -153,15 +171,17 @@ settings_show_advanced = true
     wallpaper_placement = "floating"
 
     [shell.session]
-    grid = true
     grid_columns = 4
 
         [[shell.session.actions]]
-        action = "shutdown"
+        action = "command"
+        command = "systemctl hibernate"
         countdown_seconds = 0.0
         enabled = true
+        glyph = "hibernate"
+        label = "Hibernate"
         shortcut = "1"
-        variant = "destructive"
+        variant = "default"
 
         [[shell.session.actions]]
         action = "reboot"
@@ -171,9 +191,24 @@ settings_show_advanced = true
         variant = "default"
 
         [[shell.session.actions]]
-        action = "lock"
+        action = "lock_and_suspend"
         countdown_seconds = 0.0
         enabled = true
+        shortcut = "3"
+        variant = "default"
+
+        [[shell.session.actions]]
+        action = "logout"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "4"
+        variant = "default"
+
+        [[shell.session.actions]]
+        action = "shutdown"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "5"
         variant = "default"
 
 [theme]
@@ -200,8 +235,10 @@ font_weight = 600
 max_length = 390
 
 [widget.brightness]
-enabled = false
 show_label = false
+
+[widget.btn]
+type = "ezequiel/mango_layouts:btn"
 
 [widget.clock]
 font_weight = 700

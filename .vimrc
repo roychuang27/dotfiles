@@ -1,8 +1,4 @@
-se nu ru cul cin aw ai is ts=4 sw=4 noeb bg=dark
-sy on
-nmap <leader>\ :!g++ % -std=c++17 -D local&& ./a.out && rm a.out<CR>
-
-" edited from the overthewire version
+syntax on
 
 set background=dark
 if has("autocmd")
@@ -109,3 +105,8 @@ set mouse=
 set guioptions=
 set nowrap
 nnoremap <Leader>b :buffers<CR>:buffer<Space>
+
+let &t_ti.="\<Esc>[2 q"
+let &t_SI.="\<Esc>[6 q"
+let &t_EI.="\<Esc>[2 q"
+let &t_te.="\<Esc>[0 q"

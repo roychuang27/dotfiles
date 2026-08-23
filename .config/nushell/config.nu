@@ -3,25 +3,37 @@ let carapace_completer = {|spans: list<string>|
 }
 
 $env.config = ($env.config | merge deep {
-    buffer_editor: nvim
-    show_banner: short
-    cursor_shape: {
-      emacs: "blink_line"
-    }
-    completions: {
-        external: {
-            enable: true
-            completer: $carapace_completer
+        edit_mode: vi
+        buffer_editor: nvim
+        show_banner: short
+        cursor_shape: {
+          emacs: line
+          vi_insert: line
+          vi_normal: block
         }
-    }
-    history: {
-        file_format: sqlite
-        isolation: true
-    }
+        completions: {
+            external: {
+                enable: true
+                completer: $carapace_completer
+            }
+        }
+        # hooks: {
+        #         pre_prompt: [
+        #                 { print -n "\e[ q" }
+        #         ]
+        # }
+        history: {
+            file_format: sqlite
+            isolation: true
+        }
 })
+
 
 $env.EDITOR = "nvim"
 $env.CUDA_DIR = "/opt/cuda/"
+
+$env.PROMPT_INDICATOR_VI_INSERT = ""
+$env.PROMPT_INDICATOR_VI_NORMAL = ""
 
 use std/util "path add"
 path add $"($env.HOME)/.local/bin"
@@ -31,6 +43,7 @@ path add "/opt/android-sdk/platform-tools"
 alias vide = neovide
 alias ll = ls -la
 alias rm = rm -i
+alias zed = zeditor
 
 def neovide [] {
     ^neovide --fork
@@ -71,10 +84,10 @@ def --env y [...args] {
         ^rm -f $tmp
 }
 
-if "TMUX" not-in $env {
-    ^tmux
-    exit
-}
+# if "TMUX" not-in $env {
+#     ^tmux
+#     exit
+# }
 
 source ~/.starship.nu
 source ~/.zoxide.nu
