@@ -1,4 +1,4 @@
-config_version = 12
+config_version = 13
 
 [audio]
 enable_overdrive = true
@@ -86,11 +86,13 @@ widget_order = [ "lockscreen-login-box@WL-1", "lockscreen-login-box@winit", "loc
     visible = true
 
     [lockscreen_widgets.widget."lockscreen-login-box@WL-1"]
-    box_height = 213.0
-    box_width = 589.0
+    box_height = 196.0
+    box_width = 720.0
     cx = 310.5
     cy = 473.5
     output = "WL-1"
+    placement_height = 0.0
+    placement_width = 0.0
     rotation = 0.0
     type = "login_box"
 
@@ -105,14 +107,19 @@ widget_order = [ "lockscreen-login-box@WL-1", "lockscreen-login-box@winit", "loc
         show_caps_lock = true
         show_keyboard_layout = true
         show_login_button = true
+        show_media = true
         show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
 
     [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
-    box_height = 201.0
+    box_height = 196.0
     box_width = 720.0
     cx = 640.0
     cy = 601.0
     output = "eDP-1"
+    placement_height = 720.0
+    placement_width = 1280.0
     rotation = 0.0
     type = "login_box"
 
@@ -127,14 +134,19 @@ widget_order = [ "lockscreen-login-box@WL-1", "lockscreen-login-box@winit", "loc
         show_caps_lock = true
         show_keyboard_layout = true
         show_login_button = true
+        show_media = true
         show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
 
     [lockscreen_widgets.widget."lockscreen-login-box@winit"]
-    box_height = 213.0
+    box_height = 196.0
     box_width = 810.0
     cx = 945.0
     cy = 814.5
     output = "winit"
+    placement_height = 0.0
+    placement_width = 0.0
     rotation = 0.0
     type = "login_box"
 
@@ -149,7 +161,10 @@ widget_order = [ "lockscreen-login-box@WL-1", "lockscreen-login-box@winit", "loc
         show_caps_lock = true
         show_keyboard_layout = true
         show_login_button = true
+        show_media = true
         show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
 
 [plugin_settings."ezequiel/mango_layouts"]
 panel_open_near_click = true
@@ -174,12 +189,9 @@ settings_show_advanced = true
     grid_columns = 4
 
         [[shell.session.actions]]
-        action = "command"
-        command = "systemctl hibernate"
+        action = "shutdown"
         countdown_seconds = 0.0
         enabled = true
-        glyph = "hibernate"
-        label = "Hibernate"
         shortcut = "1"
         variant = "default"
 
@@ -202,13 +214,6 @@ settings_show_advanced = true
         countdown_seconds = 0.0
         enabled = true
         shortcut = "4"
-        variant = "default"
-
-        [[shell.session.actions]]
-        action = "shutdown"
-        countdown_seconds = 0.0
-        enabled = true
-        shortcut = "5"
         variant = "default"
 
 [theme]

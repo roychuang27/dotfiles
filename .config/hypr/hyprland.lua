@@ -260,4 +260,3 @@ hl.window_rule({
     no_focus = true,
 })
 
--- require("noctalia").apply_theme()

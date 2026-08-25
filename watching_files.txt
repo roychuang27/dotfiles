@@ -23,3 +23,4 @@
 .local/share/applications/
 .config/foot/
 .zshrc
+.config/helix/config.toml
