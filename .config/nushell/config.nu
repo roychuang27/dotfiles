@@ -44,6 +44,7 @@ alias vide = neovide
 alias ll = ls -la
 alias rm = rm -i
 alias zed = zeditor
+alias hx = helix
 
 def neovide [] {
     ^neovide --fork

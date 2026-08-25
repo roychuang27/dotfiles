@@ -6,16 +6,16 @@
 .config/mimeapps.list
 .config/fish/config.fish
 .config/fontconfig/fonts.conf
-.config/hypr/hyprland.lua
-.config/kitty/kitty.conf
+# .config/hypr/hyprland.lua
+# .config/kitty/kitty.conf
 .config/nushell/config.nu
-.config/nvim/init.lua
-.config/nvim/lua/
-.config/nvim/snippets/
+# .config/nvim/init.lua
+# .config/nvim/lua/
+# .config/nvim/snippets/
 .config/qt6ct/qt6ct.conf
 .local/state/noctalia/settings.toml
-.config/niri/config.kdl
-.config/mango/config.conf
+# .config/niri/config.kdl
+# .config/mango/config.conf
 .local/bin/
 # .config/BraveSoftware/Brave-Browser/Default/Preferences
 .config/starship.toml
