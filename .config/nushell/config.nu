@@ -3,13 +3,16 @@ let carapace_completer = {|spans: list<string>|
 }
 
 $env.config = ($env.config | merge deep {
-        edit_mode: vi
-        buffer_editor: nvim
+        edit_mode: helix
+        buffer_editor: helix
         show_banner: short
         cursor_shape: {
           emacs: line
           vi_insert: line
           vi_normal: block
+          helix_normal: block
+          helix_insert: line
+        
         }
         completions: {
             external: {
@@ -29,7 +32,7 @@ $env.config = ($env.config | merge deep {
 })
 
 
-$env.EDITOR = "nvim"
+$env.EDITOR = "helix"
 $env.CUDA_DIR = "/opt/cuda/"
 
 $env.PROMPT_INDICATOR_VI_INSERT = ""
@@ -50,15 +53,7 @@ def neovide [] {
     ^neovide --fork
 }
 
-alias cfnu = config nu
 alias acvenv = overlay use .venv/bin/activate.nu
-def cfhl [] { ^$env.EDITOR ~/.config/hypr/hyprland.lua }
-def rubu [] { sh ~/Projects/dotfiles/pull_from_home.sh }
-def cfbu [] { ^$env.EDITOR ~/Projects/dotfiles/watching_files.txt }
-def cfkt [] { ^$env.EDITOR ~/.config/kitty/kitty.conf }
-def cfnr [] { ^$env.EDITOR ~/.config/niri/config.kdl }
-def cfmime [] { ^$env.EDITOR ~/.config/mimeapps.list }
-def cfmg [] { ^$env.EDITOR ~/.config/mango/config.conf }
 
 def ytmdl [...args] {
     let opts = [
@@ -90,5 +85,5 @@ def --env y [...args] {
 #     exit
 # }
 
-source ~/.starship.nu
-source ~/.zoxide.nu
+source ~/.local/share/scripts/starship.nu
+source ~/.local/share/scripts/zoxide.nu

@@ -12,7 +12,7 @@ PS1='[\u@\h \W]\$ '
 
 export CLICOLOR=1
 export LSCOLORS=cxgxfxexbxegedabagacad
-export EDITOR='vim'
+export EDITOR='helix'
 
 PROMPT=$'%B%F{green}%~%b%F{blue}\n$%f '
 

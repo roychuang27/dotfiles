@@ -8,7 +8,7 @@ fish_add_path /home/roychuang/.opencode/bin
 fish_add_path $HOME/.cargo/bin
 set -x CUDA_DIR "/opt/cuda/"
 
-function yy
+function y
         set tmp (mktemp -t "yazi-cwd.XXXXXX")
         command yazi $argv --cwd-file="$tmp"
         if read -z cwd < "$tmp"; and [ "$cwd" != "$PWD" ]; and test -d "$cwd"

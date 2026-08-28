@@ -91,8 +91,8 @@ widget_order = [ "lockscreen-login-box@WL-1", "lockscreen-login-box@winit", "loc
     cx = 310.5
     cy = 473.5
     output = "WL-1"
-    placement_height = 0.0
-    placement_width = 0.0
+    placement_height = 684.0
+    placement_width = 1274.0
     rotation = 0.0
     type = "login_box"
 
@@ -115,8 +115,8 @@ widget_order = [ "lockscreen-login-box@WL-1", "lockscreen-login-box@winit", "loc
     [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
     box_height = 196.0
     box_width = 720.0
-    cx = 640.0
-    cy = 601.0
+    cx = 640.00006103515625
+    cy = 601.00006103515625
     output = "eDP-1"
     placement_height = 720.0
     placement_width = 1280.0
@@ -225,15 +225,16 @@ wallpaper_scheme = "m3-rainbow"
 
     [theme.templates]
     builtin_ids = [ "qt" ]
+    community_ids = [ "papirus-icons" ]
 
 [wallpaper.default]
-path = "/home/roychuang/Pictures/Wallpapers/wyjTBRi.jpg"
+path = "/home/roychuang/Pictures/Wallpapers/pikasonic_fa_wall_paper.png"
 
 [wallpaper.last]
-path = "/home/roychuang/Pictures/Wallpapers/wyjTBRi.jpg"
+path = "/home/roychuang/Pictures/Wallpapers/pikasonic_fa_wall_paper.png"
 
 [wallpaper.monitors.eDP-1]
-path = "/home/roychuang/Pictures/Wallpapers/wyjTBRi.jpg"
+path = "/home/roychuang/Pictures/Wallpapers/pikasonic_fa_wall_paper.png"
 
 [widget.active_window]
 font_weight = 600
@@ -251,6 +252,9 @@ format = "%a %D %H:%M"
 
 [widget.control-center]
 glyph = "navigation"
+
+[widget.lock_keys]
+hide_when_off = true
 
 [widget.media]
 album_art_only = true

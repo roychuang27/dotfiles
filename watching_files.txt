@@ -1,4 +1,3 @@
-# sync list: lines starting with '#' and blank lines are skipped by both sync scripts
 .bashrc
 .bash_profile
 .vimrc
@@ -15,7 +14,7 @@
 .config/qt6ct/qt6ct.conf
 .local/state/noctalia/settings.toml
 # .config/niri/config.kdl
-# .config/mango/config.conf
+.config/mango/config.conf
 .local/bin/
 # .config/BraveSoftware/Brave-Browser/Default/Preferences
 .config/starship.toml
