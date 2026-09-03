@@ -1,17 +1,32 @@
 #!/usr/bin/sh
 
-result=$(mktemp)
-trap 'rm -f "$result"' EXIT
+# result=$(mktemp)
+# trap 'rm -f "$result"' EXIT
 
-footclient --app-id=foot-fzf-config sh -c '
-    {
-        echo Projects/dotfiles/watching_files.txt
-        awk "/^[[:space:]]*#/ { next } { print }" \
-            "$HOME/Projects/dotfiles/watching_files.txt"
-    } | fzf --height=100% --layout=reverse > "$1"
-' sh "$result"
+# footclient --app-id=foot-fzf-config sh -c '
+#     {
+#         echo Projects/dotfiles/watching_files.txt
+#         awk "/^[[:space:]]*#/ { next } { print }" \
+#             "$HOME/Projects/dotfiles/watching_files.txt"
+#     } | fzf --height=100% --layout=reverse > "$1"
+# ' sh "$result"
 
-selected_file=$(cat "$result")
+# selected_file=$(cat "$result")
+
+list_file="Projects/dotfiles/watching_files.txt"
+
+selected_file=$({
+    echo $list_file
+    awk '/^[[:space:]]*#/ { next } { print }' "$HOME/$list_file" |
+    while IFS= read -r entry || [ -n "$entry" ]; do
+        abs="$HOME/$entry"
+        if [ -d "$abs" ]; then
+            find "$abs" -type f 2>/dev/null | sed "s|^$HOME/||"
+        elif [ -f "$abs" ]; then
+            echo "$entry"
+        fi
+    done
+} | fuzzel -d -l 10 --anchor=top --width=100)
 
 if [ -n "$selected_file" ]; then
     footclient -e "$EDITOR" "$HOME/$selected_file"

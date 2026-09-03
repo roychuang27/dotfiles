@@ -1,0 +1,15 @@
+#!/bin/sh
+
+file="$1"
+exe=$(mktemp)
+
+trap 'rm -f "$exe"' EXIT
+
+g++ -std=c++23 "$file" -DLOCAL -o "$exe" || exit 1
+chmod +x "$exe"
+echo "Compiled"
+
+"$exe" \
+    2> >(while IFS= read -r line; do
+        printf '\033[31m%s\033[0m\n' "$line"
+    done)

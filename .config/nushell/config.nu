@@ -42,6 +42,9 @@ use std/util "path add"
 path add $"($env.HOME)/.local/bin"
 path add $"($env.HOME)/.opencode/bin"
 path add "/opt/android-sdk/platform-tools"
+path add $"($env.HOME)/.cargo/bin"
+path add $"($env.HOME)/go/"
+path add $"($env.HOME)/go/bin/"
 
 alias vide = neovide
 alias ll = ls -la

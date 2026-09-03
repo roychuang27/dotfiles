@@ -2,10 +2,15 @@ theme = "everforest_dark"
 
 [editor.statusline]
 right = ["diagnostics", "selections", "position", "position-percentage"]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
 
 [editor]
 line-number = "absolute"
 mouse = true
+color-modes = true
+default-yank-register = "+"
 
 [editor.cursor-shape]
 insert = "bar"
@@ -14,9 +19,4 @@ select = "underline"
 
 [editor.file-picker]
 hidden = true
-
-[keys.normal]
-# Quick iteration on config changes
-C-o = ":config-open"
-C-r = ":config-reload"
 

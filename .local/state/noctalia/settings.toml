@@ -5,7 +5,6 @@ enable_overdrive = true
 enable_sounds = true
 
 [bar.default]
-background_opacity = 0.3899999912828207
 capsule_opacity = 0.39999999105930328
 concave_edge_corners = false
 end = [
@@ -20,9 +19,11 @@ end = [
     "battery",
     "session"
 ]
+font_family = "Noto Sans CJK TC"
 margin_ends = 0
 padding = 20
 radius = 0
+shadow = false
 start = [ "launcher", "wallpaper", "btn", "workspaces", "active_window" ]
 thickness = 30
 
@@ -115,8 +116,8 @@ widget_order = [ "lockscreen-login-box@WL-1", "lockscreen-login-box@winit", "loc
     [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
     box_height = 196.0
     box_width = 720.0
-    cx = 640.00006103515625
-    cy = 601.00006103515625
+    cx = 640.0001220703125
+    cy = 601.0001220703125
     output = "eDP-1"
     placement_height = 720.0
     placement_width = 1280.0
@@ -218,7 +219,6 @@ settings_show_advanced = true
 
 [theme]
 community_palette = "Ayu Blue"
-mode = "dark"
 pure_black_dark = true
 source = "wallpaper"
 wallpaper_scheme = "m3-rainbow"
@@ -238,7 +238,6 @@ path = "/home/roychuang/Pictures/Wallpapers/pikasonic_fa_wall_paper.png"
 
 [widget.active_window]
 font_weight = 600
-max_length = 390
 
 [widget.brightness]
 show_label = false

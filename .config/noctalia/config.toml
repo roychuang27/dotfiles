@@ -1,9 +1,0 @@
-[bar.default]
-shadow = false
-contact_shadow = false
-
-[dock]
-shadow = false
-
-[shell.panel]
-shadow = false
