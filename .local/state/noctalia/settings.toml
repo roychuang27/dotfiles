@@ -65,8 +65,8 @@ behavior_order = [ "lock", "screen-off", "lock-and-suspend" ]
 
     [idle.behavior.lock-and-suspend]
     action = "lock_and_suspend"
-    enabled = false
-    timeout = 900.0
+    enabled = true
+    timeout = 600.0
 
     [idle.behavior.screen-off]
     action = "screen_off"
@@ -89,11 +89,11 @@ widget_order = [ "lockscreen-login-box@WL-1", "lockscreen-login-box@winit", "loc
     [lockscreen_widgets.widget."lockscreen-login-box@WL-1"]
     box_height = 196.0
     box_width = 720.0
-    cx = 310.5
-    cy = 473.5
+    cx = 155.00625610351562
+    cy = 236.05775451660156
     output = "WL-1"
-    placement_height = 684.0
-    placement_width = 1274.0
+    placement_height = 341.0
+    placement_width = 636.0
     rotation = 0.0
     type = "login_box"
 
@@ -224,7 +224,7 @@ source = "wallpaper"
 wallpaper_scheme = "m3-rainbow"
 
     [theme.templates]
-    builtin_ids = [ "qt" ]
+    builtin_ids = [ "mango", "qt" ]
     community_ids = [ "papirus-icons" ]
 
 [wallpaper.default]
