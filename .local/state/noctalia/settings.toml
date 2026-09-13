@@ -1,4 +1,4 @@
-config_version = 13
+config_version = 14
 
 [audio]
 enable_overdrive = true
@@ -6,6 +6,7 @@ enable_sounds = true
 
 [bar.default]
 capsule_opacity = 0.39999999105930328
+center = [ "media" ]
 concave_edge_corners = false
 end = [
     "tray",
@@ -17,6 +18,8 @@ end = [
     "volume",
     "brightness",
     "battery",
+    "clock",
+    "control-center",
     "session"
 ]
 font_family = "Noto Sans CJK TC"
@@ -217,6 +220,13 @@ settings_show_advanced = true
         shortcut = "4"
         variant = "default"
 
+        [[shell.session.actions]]
+        action = "lock"
+        countdown_seconds = 0.0
+        enabled = true
+        shortcut = "5"
+        variant = "default"
+
 [theme]
 community_palette = "Ayu Blue"
 pure_black_dark = true
@@ -227,14 +237,17 @@ wallpaper_scheme = "m3-rainbow"
     builtin_ids = [ "mango", "qt" ]
     community_ids = [ "papirus-icons" ]
 
-[wallpaper.default]
-path = "/home/roychuang/Pictures/Wallpapers/pikasonic_fa_wall_paper.png"
+[wallpaper]
+directory = "/home/roychuang/Pictures/Wallpapers"
 
-[wallpaper.last]
-path = "/home/roychuang/Pictures/Wallpapers/pikasonic_fa_wall_paper.png"
+    [wallpaper.default]
+    path = "/home/roychuang/Pictures/Wallpapers/pikasonic_fa_wall_paper.png"
 
-[wallpaper.monitors.eDP-1]
-path = "/home/roychuang/Pictures/Wallpapers/pikasonic_fa_wall_paper.png"
+    [wallpaper.last]
+    path = "/home/roychuang/Pictures/Wallpapers/pikasonic_fa_wall_paper.png"
+
+    [wallpaper.monitors.eDP-1]
+    path = "/home/roychuang/Pictures/Wallpapers/pikasonic_fa_wall_paper.png"
 
 [widget.active_window]
 font_weight = 600
@@ -247,19 +260,15 @@ type = "ezequiel/mango_layouts:btn"
 
 [widget.clock]
 font_weight = 700
-format = "%a %D %H:%M"
-
-[widget.control-center]
-glyph = "navigation"
+format = "%H:%M"
 
 [widget.lock_keys]
 hide_when_off = true
 
 [widget.media]
-album_art_only = true
+anchor = true
 capsule_radius = "auto"
 hide_when_no_media = true
-max_length = 150
 
 [widget.network]
 show_label = false
