@@ -38,7 +38,7 @@ $env.config = ($env.config | merge deep {
           vi_normal: block
           helix_normal: block
           helix_insert: line
-        
+
         }
         completions: {
             external: {
@@ -65,6 +65,8 @@ $env.CXX = "/usr/bin/clang++"
 
 $env.PROMPT_INDICATOR_VI_INSERT = ""
 $env.PROMPT_INDICATOR_VI_NORMAL = ""
+
+$env.CARAPACE_BRIDGES = 'zsh,fish,bash'
 
 $env.config.highlight_resolved_externals = true
 $env.config.color_config.shape_internalcall = "cyan_bold"
@@ -132,3 +134,4 @@ source ~/.local/share/scripts/starship.nu
 source ~/.local/share/scripts/zoxide.nu
 
 
+pfetch

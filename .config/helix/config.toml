@@ -10,7 +10,7 @@ mode.select = "SELECT"
 line-number = "absolute"
 mouse = true
 color-modes = true
-default-yank-register = "+"
+trim-trailing-whitespace = true
 
 [editor.cursor-shape]
 insert = "bar"
@@ -19,4 +19,9 @@ select = "underline"
 
 [editor.file-picker]
 hidden = true
+
+[editor.indent-guides]
+render = true
+character = "▏"
+skip-levels = 0
 

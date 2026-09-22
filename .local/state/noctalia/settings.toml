@@ -29,6 +29,7 @@ radius = 0
 shadow = false
 start = [ "launcher", "wallpaper", "btn", "workspaces", "active_window" ]
 thickness = 30
+widget_spacing = 4
 
 [brightness]
 enable_ddcutil = true
@@ -82,12 +83,44 @@ address = "Taipei, Taiwan"
 [lockscreen_widgets]
 enabled = false
 schema_version = 2
-widget_order = [ "lockscreen-login-box@WL-1", "lockscreen-login-box@winit", "lockscreen-login-box@eDP-1" ]
+widget_order = [
+    "lockscreen-login-box@HDMI-A-1",
+    "lockscreen-login-box@WL-1",
+    "lockscreen-login-box@winit",
+    "lockscreen-login-box@eDP-1"
+]
 
     [lockscreen_widgets.grid]
     cell_size = 16
     major_interval = 4
     visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1"]
+    box_height = 196.0
+    box_width = 810.0
+    cx = 512.0
+    cy = 586.0
+    output = "HDMI-A-1"
+    placement_height = 768.0
+    placement_width = 1024.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_unlock_hint = true
+        show_weather = true
 
     [lockscreen_widgets.widget."lockscreen-login-box@WL-1"]
     box_height = 196.0
@@ -170,6 +203,9 @@ widget_order = [ "lockscreen-login-box@WL-1", "lockscreen-login-box@winit", "loc
         show_unlock_hint = true
         show_weather = true
 
+[osd]
+scale = 0.80000000447034836
+
 [plugin_settings."ezequiel/mango_layouts"]
 panel_open_near_click = true
 panel_position = "auto"
@@ -241,13 +277,13 @@ wallpaper_scheme = "m3-rainbow"
 directory = "/home/roychuang/Pictures/Wallpapers"
 
     [wallpaper.default]
-    path = "/home/roychuang/Pictures/Wallpapers/pikasonic_fa_wall_paper.png"
+    path = "/home/roychuang/Pictures/Wallpapers/ハローセカイ_145215368.jpg"
 
     [wallpaper.last]
-    path = "/home/roychuang/Pictures/Wallpapers/pikasonic_fa_wall_paper.png"
+    path = "/home/roychuang/Pictures/Wallpapers/ハローセカイ_145215368.jpg"
 
     [wallpaper.monitors.eDP-1]
-    path = "/home/roychuang/Pictures/Wallpapers/pikasonic_fa_wall_paper.png"
+    path = "/home/roychuang/Pictures/Wallpapers/ハローセカイ_145215368.jpg"
 
 [widget.active_window]
 font_weight = 600
@@ -260,7 +296,10 @@ type = "ezequiel/mango_layouts:btn"
 
 [widget.clock]
 font_weight = 700
-format = "%H:%M"
+format = "%m/%d %H:%M:%S"
+
+[widget.control-center]
+glyph = "terminal-2"
 
 [widget.lock_keys]
 hide_when_off = true
@@ -269,6 +308,14 @@ hide_when_off = true
 anchor = true
 capsule_radius = "auto"
 hide_when_no_media = true
+
+    [widget.media.actions]
+    back = "none"
+    forward = "none"
+    left = "media toggle"
+    right = "panel-toggle control-center media"
+    scroll_down = "none"
+    scroll_up = "none"
 
 [widget.network]
 show_label = false

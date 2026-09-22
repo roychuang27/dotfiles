@@ -1,15 +1,19 @@
-#!/bin/sh
+#!/bin/bash
 
 file="$1"
 exe=$(mktemp)
 
 trap 'rm -f "$exe"' EXIT
 
-g++ -std=c++23 "$file" -DLOCAL -o "$exe" || exit 1
-chmod +x "$exe"
+g++ -std=c++23 "$file" -DLOCAL -fsanitize=undefined,address -Wall -Wextra -Wshadow -fmax-errors=1 -O0 -o "$exe" || exit 1
 echo "Compiled"
 
-"$exe" \
-    2> >(while IFS= read -r line; do
-        printf '\033[31m%s\033[0m\n' "$line"
-    done)
+if (( $# == 1 )); then
+    "$exe"
+else
+    for input in "${@:2}"; do
+        printf '\n\033[1;34m===== %s =====\033[0m\n' "$input"
+        "$exe" < "$input"
+        echo
+    done
+fi
