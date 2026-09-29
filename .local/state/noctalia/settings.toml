@@ -265,6 +265,7 @@ settings_show_advanced = true
 
 [theme]
 community_palette = "Ayu Blue"
+mode = "dark"
 pure_black_dark = true
 source = "wallpaper"
 wallpaper_scheme = "m3-rainbow"

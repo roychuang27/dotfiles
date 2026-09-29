@@ -130,8 +130,6 @@ def --env y [...args] {
 #     exit
 # }
 
+# ~/.local/bin/tmux-cleanup
 source ~/.local/share/scripts/starship.nu
 source ~/.local/share/scripts/zoxide.nu
-
-
-pfetch

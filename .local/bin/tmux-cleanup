@@ -1,0 +1,29 @@
+#!/bin/sh
+
+tmux list-sessions -F '#{session_name} #{session_attached}' |
+while read -r session attached; do
+    # Only consider detached sessions
+    [ "$attached" -eq 0 ] || continue
+
+    # Get commands running in every pane
+    commands=$(tmux list-panes -a -t "$session" -F '#{pane_current_command}')
+
+    idle=true
+
+    while IFS= read -r cmd; do
+        case "$cmd" in
+            bash|zsh|fish|nu|sh)
+                ;;
+            *)
+                idle=false
+                break
+                ;;
+        esac
+    done <<EOF
+$commands
+EOF
+
+    if $idle; then
+        tmux kill-session -t "$session"
+    fi
+done
