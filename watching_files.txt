@@ -7,6 +7,7 @@
 .config/fontconfig/fonts.conf
 # .config/hypr/hyprland.lua
 .config/kitty/kitty.conf
+.config/kitty/current-theme.conf
 .config/nushell/config.nu
 # .config/nvim/init.lua
 # .config/nvim/lua/
