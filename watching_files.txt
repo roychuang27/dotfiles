@@ -25,3 +25,8 @@
 .config/helix/config.toml
 .config/fuzzel/fuzzel.ini
 .config/xdg-desktop-portal/portals.conf
+
+# Secret assets
+Pictures/Wallpapers/ハローセカイ_145215368.jpg
+Pictures/Wallpapers/wall_anime2_2K.png
+Pictures/うれしい～_129479431.jpg
