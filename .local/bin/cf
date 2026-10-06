@@ -1,23 +1,10 @@
 #!/usr/bin/sh
 
-# result=$(mktemp)
-# trap 'rm -f "$result"' EXIT
-
-# footclient --app-id=foot-fzf-config sh -c '
-#     {
-#         echo Projects/dotfiles/watching_files.txt
-#         awk "/^[[:space:]]*#/ { next } { print }" \
-#             "$HOME/Projects/dotfiles/watching_files.txt"
-#     } | fzf --height=100% --layout=reverse > "$1"
-# ' sh "$result"
-
-# selected_file=$(cat "$result")
-
 list_file="Projects/dotfiles/watching_files.txt"
 
 selected_file=$({
     echo $list_file
-    awk '/^[[:space:]]*#/ { next } { print }' "$HOME/$list_file" |
+    awk '/^[[:space:]]*#/ || /^[[:space:]]*$/ { next } { print }' "$HOME/$list_file" |
     while IFS= read -r entry || [ -n "$entry" ]; do
         abs="$HOME/$entry"
         if [ -d "$abs" ]; then
